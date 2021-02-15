@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: Main
-Class-Path: libs/poi-4.1.2.jar libs/poi-ooxml-4.1.2.jar libs/poi-ooxml-s
- chemas-4.1.2.jar libs/commons-codec-1.13.jar libs/commons-collections4-
- 4.4.jar libs/commons-compress-1.19.jar libs/commons-math3-3.6.1.jar lib
- s/curvesapi-1.06.jar libs/SparseBitSet-1.2.jar libs/xmlbeans-3.1.0.jar
-

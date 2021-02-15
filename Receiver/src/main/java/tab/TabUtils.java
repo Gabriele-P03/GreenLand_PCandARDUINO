@@ -1,9 +1,16 @@
 package tab;
 
 import org.apache.poi.ss.usermodel.*;
-
 import java.io.*;
 
+
+/**
+ * This class contains some static methods useful
+ * to edit the spreadsheet
+ *
+ * @author GABRIELE-P03
+ * @gitHub https://github.com/Gabriele-P03/GreenLand_PCandARDUINO/tree/master/Receive
+ */
 public class TabUtils {
 
     private static File file = new File("resources", "surveys.txt");
@@ -30,6 +37,10 @@ public class TabUtils {
         return false;
     }
 
+    /**
+     * Called when a new inputStream reading has been done.
+     * It will store data from text file onto spreadsheet
+     */
     public static void append(){
         allowEditing();
         try{
@@ -51,7 +62,7 @@ public class TabUtils {
 
                     excelFile = new File("resources", year + ".xlsx");
                     fisExcel = new FileInputStream(excelFile);
-                    setWriterPointer(year, month, day);
+                    setWriterPointer(month, day);
 
                     cell = row.createCell(0);
                     cell.setCellValue(temperature);
@@ -75,6 +86,17 @@ public class TabUtils {
 
     }
 
+    /**
+     * Given a data, such as 01-01-2021, it will divide it
+     * DAY= 01
+     * MONTH = 01
+     * YEAR = 2021
+     *
+     * Get the two index whose represents the dashes inside the
+     * string and then divide it
+     *
+     * @param buffer
+     */
     private static void divideDate(String buffer) {
         int x = 0, y = 0, index = 0;
         for(int i = 0; i < 2; i++){
@@ -87,7 +109,14 @@ public class TabUtils {
         year = buffer.substring(y);
     }
 
-    private static void setWriterPointer(String year, String month, String day) throws IOException {
+    /**
+     * Select a workbook, the right sheet(as the month) and the right row(as the day)
+     *
+     * @param month
+     * @param day
+     * @throws IOException
+     */
+    private static void setWriterPointer(String month, String day) throws IOException {
         selectWorkbook();
         selectSheet(month);
         selectRow(Integer.valueOf(day));
@@ -98,11 +127,14 @@ public class TabUtils {
 
     private static void selectSheet(String month) { sheet = workbook.getSheet(Tab.months[Integer.valueOf(month)-1]); }
 
-    //Give -1 to create a new row
-    private static void selectRow(int rowIndex){
-        row = sheet.createRow(rowIndex);}
+    private static void selectRow(int rowIndex){ row = sheet.createRow(rowIndex);}
 
 
+    /**
+     * Check if the file is ready to be edited, if not throw a new IllegalState
+     *
+     * @see Tab
+     */
     private static void allowEditing() {
         if(!Tab.isFlagReady()){
             throw new IllegalStateException("Trying to use a file unavailable...\nMake sure to have called Tab#instance() before");

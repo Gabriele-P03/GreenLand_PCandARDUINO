@@ -1,21 +1,27 @@
 package tab;
 
-
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
-
 import java.io.*;
 import java.util.Calendar;
 import java.util.Scanner;
-import java.util.TimeZone;
+
 
 /**
  * This class contains static method to fill the xlsx file which contains
- * every daily average of the surveys months-bt-months.
- * Each file contains 12 months of surveys, one-for-sheet as said below
+ * every daily average of the surveys.
+ * Each file contains 12 months of surveys (one-for-sheet).
  *
- * @author GABRIELE
+ * Before to make available the spreadsheet, it will check every sheet name,
+ * if at least one is wrong, every sheet will be deleted and recreate...
+ * O course this program will wait that the user be agreed.
+ *
+ * I suggest, as the program say, to edit by your hand the wrong name and
+ * rerun this program.
+ * If you cannot do it, please make a backup of the spreadsheet with the
+ * wrong sheet name and let this program delete the file
+ *
+ * @author GABRIELE-P03
+ * @gitHub https://github.com/Gabriele-P03/GreenLand_PCandARDUINO/tree/master/Receive
  */
 public class Tab {
 
@@ -46,20 +52,35 @@ public class Tab {
         flagReady = true;
     }
 
+    /**
+     * Check a file already created.
+     * If there are some wrong sheet's name, it will delete all one
+     * and create other 12 new sheets
+     *
+     * @throws IOException
+     */
     private static void checkExcelFile() throws IOException {
         int lenght = workbook.getNumberOfSheets();
+
+        /*
+            Check every sheet name and remove if it is wrong
+         */
         for(int i = 0; i < lenght; i++){
             if(!workbook.getSheetAt(i).getSheetName().equals(months[i])){
                 allowDelete();
                 for (i = 0; i < lenght; i++){
-                    //Every time it remove a sheet, workbook's sheets' size decrease.
-                    //So it has to delete always the first sheet
+                    /*
+                        Every time it remove a sheet, workbook's sheets' size decrease.
+                        So it has to delete always the first sheet, 'till there's at least one
+                     */
                     workbook.removeSheetAt(0);
                 }
                 lenght = 0;
                 break;
             }
         }
+
+        //Create the remaining sheets
         if(lenght < 12){
             for(int i = lenght; i < 12; i++){
                 workbook.createSheet(months[i]);
@@ -72,6 +93,9 @@ public class Tab {
         }
     }
 
+    /**
+     * If the excel file called YEAR.xlsx not exists, it will create it.
+     */
     private static void setNewExcelFile(){
         try {
             file.createNewFile();
@@ -90,6 +114,13 @@ public class Tab {
         }
     }
 
+    /**
+     * It will write, on the first row, what the numbers below represents.
+     * As below...
+     *  ----------------------------
+     * 0|temperature|humidity|light|
+     *  ---------------------------
+     */
     private static void setSheet(int sheetIndex) {
         Row row = workbook.getSheetAt(sheetIndex).createRow(0);
         Cell cell = row.createCell(0);
@@ -100,11 +131,16 @@ public class Tab {
         cell.setCellValue("light");
     }
 
+    /**
+     * 'Cause when a sheet name is wrong it has to delete all sheets and
+     * create them, it will before wait that user be agreed
+     */
     private static void allowDelete(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Seems like a sheet name is wrong!\n" +
                 "Edit by your hand or let me do it, but I will delete all them...\n" +
-                "I suggest you, above all if the file is big, to edit the wrong name and to re-run this program\n");
+                "I suggest you, above all if the file is big, to edit the wrong name and to rerun this program\n" +
+                "If you cannot edit it, MAKE A BACKUP and rerun me\n");
         String allow;
         do{
             System.out.println("Insert y/Y to allow deleting else close this program");
@@ -112,14 +148,9 @@ public class Tab {
         }while (!allow.equals("y") && !allow.equals("Y"));
     }
 
-    public static File getFile() {
-        return file;
-    }
 
-    private static String getMonth(){ return String.valueOf(Calendar.getInstance().get(Calendar.MONTH));}
 
     private static String getYear(){ return String.valueOf(Calendar.getInstance().get(Calendar.YEAR));}
 
-    public static boolean isFlagReady() {
-        return flagReady; }
+    public static boolean isFlagReady() { return flagReady; }
 }

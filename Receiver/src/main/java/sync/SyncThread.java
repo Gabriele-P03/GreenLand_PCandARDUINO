@@ -10,9 +10,25 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
+ * When this runnable is started, a new thread is fired.
+ * The new one allows to set a new ServerSocket listening on
+ * the port declared in the settings.txt file. By default I use 2020.
  *
- * @author GABRIELE PACE
- * @git
+ * When a connection is instanced, it will read the input stream 'till its end.
+ * The IS contains the daily average of every survey sent by the client(android in this case).
+ * These data as stored onto different file in the phone, but on this server on a unique file;
+ * 'cause data should be stored in a spreadsheet, but in order to prevent any losing-data, I prefer
+ * storing them before onto a text file and then onto spreadsheet.
+ * @see Tab
+ * @see TabUtils
+ *
+ * REMEMBER THAT EVERY TIME IT READS THE INPUT STREAM, IT WILL OVERWRITE THE TEXT FILE!!!
+ * So be sure that every data has been written onto spreadsheet!!! if not call the right method to
+ * just write data onto spreadsheet without read again the inputstream, or else make a backup of the data
+ * not transporter from text to ss and contact me. MOST IF IT IS HAPPENS OFTEN!
+ *
+ * @author GABRIELE-P03
+ * @gitHub https://github.com/Gabriele-P03/GreenLand_PCandARDUINO/tree/master/Receiver
  *
  */
 public class SyncThread implements Runnable{
@@ -47,7 +63,6 @@ public class SyncThread implements Runnable{
                 clientSocket.close();
                 serverSocket.close();
 
-                //Tab.generate();
             } catch (IOException e) {
                 e.printStackTrace();
             }

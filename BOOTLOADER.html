@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<!-- saved from url=(0108)https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/ -->
+<html lang="en-US" class="yes-js js_active js slb"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;">
+<link rel="profile" href="https://gmpg.org/xfn/11">
+<script src="./BOOTLOADER_files/cb=gapi.loaded_1" async=""></script><script src="./BOOTLOADER_files/cb=gapi.loaded_0" async=""></script><script src="./BOOTLOADER_files/osd.js.download"></script><script src="./BOOTLOADER_files/f(4).txt"></script><script src="./BOOTLOADER_files/f(5).txt" id="google_shimpl"></script><script async="" type="text/javascript" src="./BOOTLOADER_files/gpt.js.download"></script><script type="text/javascript" async="" src="./BOOTLOADER_files/analytics.js.download"></script><script type="text/javascript" async="" src="./BOOTLOADER_files/library.js.download"></script><script async="" src="./BOOTLOADER_files/page.js.download"></script><script type="text/javascript">document.documentElement.className = document.documentElement.className + ' yes-js js_active js'</script>
+<script type="text/javascript">window._wca = window._wca || [];</script>
+
+<title>Flashing Arduino Bootloader on Atmega328p Microcontroller - Electronics-Lab.com</title>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flashing Arduino Bootloader on Atmega328p Microcontroller - Electronics-Lab.com">
+<meta property="og:description" content="Introduction Cost and size, just to mention a few, makes using an Arduino board in certain...">
+<meta property="og:url" content="https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/">
+<meta property="og:site_name" content="Electronics-Lab.com">
+<meta property="article:publisher" content="https://www.facebook.com/electronicslab/">
+<meta property="article:modified_time" content="2018-09-24T14:38:20+00:00">
+<meta property="og:image" content="https://www.electronics-lab.com/wp-content/uploads/2018/07/Atmeg328p-1.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@electronicslab">
+<meta name="twitter:label1" content="Est. reading time">
+<meta name="twitter:data1" content="5 minutes">
+<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":["Person","Organization"],"@id":"https://www.electronics-lab.com/#/schema/person/31339d9ec6c6bb9b504779fb3dbd4759","name":"Mike","image":{"@type":"ImageObject","@id":"https://www.electronics-lab.com/#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/7af7eb929fed99abe8c92f71d9af0310?s=96&d=mm&r=g","caption":"Mike"},"logo":{"@id":"https://www.electronics-lab.com/#personlogo"},"description":"Mike is the founder and editor of Electronics-Lab.com, an electronics engineering community/news and project sharing platform. He studied Electronics and Physics and enjoys everything that has moving electrons and fun. His interests lying on solar cells, microcontrollers and switchmode power supplies. Feel free to reach him for feedback, random tips or just to say hello :-)","sameAs":["https://www.electronics-lab.com","https://www.facebook.com/electronicslab/","https://twitter.com/electronicslab"]},{"@type":"WebSite","@id":"https://www.electronics-lab.com/#website","url":"https://www.electronics-lab.com/","name":"Electronics-Lab.com","description":"Open Source Hardware Electronics Projects","publisher":{"@id":"https://www.electronics-lab.com/#/schema/person/31339d9ec6c6bb9b504779fb3dbd4759"},"potentialAction":[{"@type":"SearchAction","target":"https://www.electronics-lab.com/?s={search_term_string}","query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#primaryimage","inLanguage":"en-US","url":"https://www.electronics-lab.com/wp-content/uploads/2018/07/Atmeg328p-1.jpg","width":500,"height":499,"caption":"Atmega328P"},{"@type":"WebPage","@id":"https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#webpage","url":"https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/","name":"Flashing Arduino Bootloader on Atmega328p Microcontroller - Electronics-Lab.com","isPartOf":{"@id":"https://www.electronics-lab.com/#website"},"primaryImageOfPage":{"@id":"https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#primaryimage"},"datePublished":"2018-08-30T10:27:04+00:00","dateModified":"2018-09-24T14:38:20+00:00","breadcrumb":{"@id":"https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/"]}]},{"@type":"BreadcrumbList","@id":"https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://www.electronics-lab.com/","url":"https://www.electronics-lab.com/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://www.electronics-lab.com/project/","url":"https://www.electronics-lab.com/project/","name":"Projects"}},{"@type":"ListItem","position":3,"item":{"@type":"WebPage","@id":"https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/","url":"https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/","name":"Flashing Arduino Bootloader on Atmega328p Microcontroller"}}]}]}</script>
+
+<link rel="dns-prefetch" href="https://www.electronics-lab.com/">
+<link rel="dns-prefetch" href="https://stats.wp.com/">
+<link rel="dns-prefetch" href="https://secure.gravatar.com/">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com/">
+<link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="dns-prefetch" href="https://v0.wordpress.com/">
+<link rel="dns-prefetch" href="https://jetpack.wordpress.com/">
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://s1.wp.com/">
+<link rel="dns-prefetch" href="https://s2.wp.com/">
+<link rel="dns-prefetch" href="https://public-api.wordpress.com/">
+<link rel="dns-prefetch" href="https://0.gravatar.com/">
+<link rel="dns-prefetch" href="https://1.gravatar.com/">
+<link rel="dns-prefetch" href="https://2.gravatar.com/">
+<link rel="alternate" type="application/rss+xml" title="Electronics-Lab.com » Feed" href="https://www.electronics-lab.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Electronics-Lab.com » Comments Feed" href="https://www.electronics-lab.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Electronics-Lab.com » Flashing Arduino Bootloader on Atmega328p Microcontroller Comments Feed" href="https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/feed/">
+<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.electronics-lab.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.6.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="kento-like-post-style-css" href="./BOOTLOADER_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="kento-like-post-date-style-css" href="./BOOTLOADER_files/jquery-ui.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="./BOOTLOADER_files/style.min.css" type="text/css" media="all">
+<style id="wp-block-library-inline-css" type="text/css">
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel="stylesheet" id="wc-block-vendors-style-css" href="./BOOTLOADER_files/vendors-style.css" type="text/css" media="all">
+<link rel="stylesheet" id="wc-block-style-css" href="./BOOTLOADER_files/style(2).css" type="text/css" media="all">
+<link rel="stylesheet" id="jquery-selectBox-css" href="./BOOTLOADER_files/jquery.selectBox.css" type="text/css" media="all">
+<link rel="stylesheet" id="yith-wcwl-font-awesome-css" href="./BOOTLOADER_files/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="yith-wcwl-main-css" href="./BOOTLOADER_files/style(3).css" type="text/css" media="all">
+<style id="yith-wcwl-main-inline-css" type="text/css">
+.yith-wcwl-share li a{color: #FFFFFF;}.yith-wcwl-share li a:hover{color: #FFFFFF;}.yith-wcwl-share a.facebook{background: #39599E; background-color: #39599E;}.yith-wcwl-share a.facebook:hover{background: #39599E; background-color: #39599E;}.yith-wcwl-share a.twitter{background: #45AFE2; background-color: #45AFE2;}.yith-wcwl-share a.twitter:hover{background: #39599E; background-color: #39599E;}.yith-wcwl-share a.pinterest{background: #AB2E31; background-color: #AB2E31;}.yith-wcwl-share a.pinterest:hover{background: #39599E; background-color: #39599E;}.yith-wcwl-share a.email{background: #FBB102; background-color: #FBB102;}.yith-wcwl-share a.email:hover{background: #39599E; background-color: #39599E;}.yith-wcwl-share a.whatsapp{background: #00A901; background-color: #00A901;}.yith-wcwl-share a.whatsapp:hover{background: #39599E; background-color: #39599E;}
+</style>
+<link rel="stylesheet" id="awsm-ead-public-css" href="./BOOTLOADER_files/embed-public.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css" href="./BOOTLOADER_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="menu-image-css" href="./BOOTLOADER_files/menu-image.css" type="text/css" media="all">
+<link rel="stylesheet" id="dashicons-css" href="./BOOTLOADER_files/dashicons.min.css" type="text/css" media="all">
+<style id="dashicons-inline-css" type="text/css">
+[data-font="Dashicons"]:before {font-family: 'Dashicons' !important;content: attr(data-icon) !important;speak: none !important;font-weight: normal !important;font-variant: normal !important;text-transform: none !important;line-height: 1 !important;font-style: normal !important;-webkit-font-smoothing: antialiased !important;-moz-osx-font-smoothing: grayscale !important;}
+</style>
+<link rel="stylesheet" id="simple-alert-boxes-css" href="./BOOTLOADER_files/simple-alert-boxes.css" type="text/css" media="all">
+<link rel="stylesheet" id="sab-fontawesome-css" href="./BOOTLOADER_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="public_print_styles--css" href="./BOOTLOADER_files/oa-social-sharing-icons-public.css" type="text/css" media="all">
+<link rel="stylesheet" id="woo3dv-frontend.css-css" href="./BOOTLOADER_files/woo3dv-frontend.css" type="text/css" media="all">
+<style id="woo3dv-frontend.css-inline-css" type="text/css">
+
+				.product.has-default-attributes.has-children > .images {
+					opacity:1 !important;
+				}
+				@media screen and (max-width: 400px) {
+				   .product.has-default-attributes.has-children > .images { 
+				    float: none;
+				    margin-right:0;
+				    width:auto;
+				    border:0;
+				    border-bottom:2px solid #000;    
+				  }
+				}
+				@media screen and (max-width:800px){
+					.product.has-default-attributes.has-children > .images  {
+						width: auto !important;
+					}
+
+				}
+			
+</style>
+<link rel="stylesheet" id="tooltipster.bundle.min.css-css" href="./BOOTLOADER_files/tooltipster.bundle.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="tooltipster-sideTip-light.min.css -css" href="./BOOTLOADER_files/tooltipster-sideTip-light.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="prettyPhoto.css-css" href="./BOOTLOADER_files/prettyPhoto.css" type="text/css" media="all">
+<link rel="stylesheet" id="woocommerce-layout-css" href="./BOOTLOADER_files/woocommerce-layout.css" type="text/css" media="all">
+<style id="woocommerce-layout-inline-css" type="text/css">
+
+	.infinite-scroll .woocommerce-pagination {
+		display: none;
+	}
+</style>
+<link rel="stylesheet" id="woocommerce-smallscreen-css" href="./BOOTLOADER_files/woocommerce-smallscreen.css" type="text/css" media="only screen and (max-width: 768px)">
+<link rel="stylesheet" id="woocommerce-general-css" href="./BOOTLOADER_files/woocommerce.css" type="text/css" media="all">
+<style id="woocommerce-inline-inline-css" type="text/css">
+.woocommerce form .form-row .required { visibility: visible; }
+</style>
+<link rel="stylesheet" id="wordpress-popular-posts-css-css" href="./BOOTLOADER_files/wpp.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpfront-scroll-top-css" href="./BOOTLOADER_files/wpfront-scroll-top.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="jquery-colorbox-css" href="./BOOTLOADER_files/colorbox.css" type="text/css" media="all">
+<link rel="stylesheet" id="yith-quick-view-css" href="./BOOTLOADER_files/yith-quick-view.css" type="text/css" media="all">
+<style id="yith-quick-view-inline-css" type="text/css">
+
+				#yith-quick-view-modal .yith-wcqv-main{background:#ffffff;}
+				#yith-quick-view-close{color:#cdcdcd;}
+				#yith-quick-view-close:hover{color:#ff0000;}
+</style>
+<link rel="stylesheet" id="woocommerce_prettyPhoto_css-css" href="./BOOTLOADER_files/prettyPhoto(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="elab-style-css" href="./BOOTLOADER_files/style(4).css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdreams-asl-basic-css" href="./BOOTLOADER_files/style.basic.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdreams-ajaxsearchlite-css" href="./BOOTLOADER_files/style-underline.css" type="text/css" media="all">
+<link rel="stylesheet" id="slb_core-css" href="./BOOTLOADER_files/app.css" type="text/css" media="all">
+<link rel="stylesheet" id="easy_table_style-css" href="./BOOTLOADER_files/style(5).css" type="text/css" media="all">
+<link rel="stylesheet" id="sendpress-fe-css-css" href="./BOOTLOADER_files/front-end.css" type="text/css" media="all">
+<link rel="stylesheet" id="tablepress-default-css" href="./BOOTLOADER_files/tablepress-combined.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="addtoany-css" href="./BOOTLOADER_files/addtoany.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="enlighterjs-css" href="./BOOTLOADER_files/enlighterjs.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="./BOOTLOADER_files/jetpack.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-paginate-css" href="./BOOTLOADER_files/wp-paginate.css" type="text/css" media="screen">
+<script type="text/javascript" src="./BOOTLOADER_files/jquery.min.js.download" id="jquery-core-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/jquery-migrate.min.js.download" id="jquery-migrate-js"></script>
+<script type="text/javascript" id="kento_pvc_js-js-extra">
+/* <![CDATA[ */
+var kento_pvc_ajax = {"kento_pvc_ajaxurl":"https:\/\/www.electronics-lab.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/kento-pvc.js.download" id="kento_pvc_js-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/google-chart-jsapi.js.download" id="google-chart-jsapi-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/addtoany.min.js.download" id="addtoany-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/es6-promise.auto.js.download" id="woo3dv-es6-promise-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/three.min.js.download" id="woo3dv-threejs-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/Detector.js.download" id="woo3dv-threejs-detector-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/Mirror.js.download" id="woo3dv-threejs-mirror-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/OrbitControls.js.download" id="woo3dv-threejs-controls-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/CanvasRenderer.js.download" id="woo3dv-threejs-canvas-renderer-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/Projector.js.download" id="woo3dv-threejs-projector-renderer-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/STLLoader.js.download" id="woo3dv-threejs-stl-loader-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/OBJLoader.js.download" id="woo3dv-threejs-obj-loader-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/VRMLLoader.js.download" id="woo3dv-threejs-vrml-loader-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/DRACOLoader.js.download" id="woo3dv-threejs-draco-loader-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/GLTFLoader.js.download" id="woo3dv-threejs-gltf-loader-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/MTLLoader.js.download" id="woo3dv-threejs-mtl-loader-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/THREEx.FullScreen.js.download" id="woo3dv-threex-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/jquery.prettyPhoto.min.js.download" id="jquery.prettyPhoto.min.js-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/jquery.prettyPhoto.init.min.js.download" id="jquery.prettyPhoto.init.min.js-js"></script>
+<script type="text/javascript" id="woo3dv-frontend.js-js-extra">
+/* <![CDATA[ */
+var woo3dv = {"url":"https:\/\/www.electronics-lab.com\/wp-admin\/admin-ajax.php","plugin_url":"https:\/\/www.electronics-lab.com\/wp-content\/plugins\/woo-3d-viewer\/","shading":"flat","display_mode":"3d_model","display_mode_mobile":"3d_model","show_shadow":"0","show_light_source1":"0","show_light_source2":"on","show_light_source3":"0","show_light_source4":"0","show_light_source5":"0","show_light_source6":"on","show_light_source7":"0","show_light_source9":"0","show_fog":"0","show_controls":"on","enable_controls":"on","show_ground":"on","ground_mirror":"0","model_default_color":"0xffffff","background1":"0xFFFFFF","grid_color":"0x898989","ground_color":"0xc1c1c1","fog_color":"0xFFFFFF","auto_rotation":"on","show_grid":"on","mobile_no_animation":"0","text_not_available":"Not available in your browser","text_multiple":"Upgrade to Woo3DViewer PRO to have multiple viewers on one page!"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/woo3dv-frontend.js.download" id="woo3dv-frontend.js-js"></script>
+<script type="text/javascript" id="wpp-js-js-extra">
+/* <![CDATA[ */
+var wpp_params = {"sampling_active":"1","sampling_rate":"100","ajax_url":"https:\/\/www.electronics-lab.com\/wp-admin\/admin-ajax.php","action":"update_views_ajax","ID":"74770","token":"f9fe47c7f3"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/wpp.js.download" id="wpp-js-js"></script>
+<script defer="" type="text/javascript" src="./BOOTLOADER_files/s-202107.js.download" id="woocommerce-analytics-js"></script>
+<script type="text/javascript" id="sendpress-signup-form-js-js-extra">
+/* <![CDATA[ */
+var sendpress = {"invalidemail":"Please enter your e-mail address","missingemail":"Please enter your e-mail address","required":"Please enter all the required fields. <br> Required fields are marked with an (*)","ajaxurl":"https:\/\/www.electronics-lab.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/sendpress.signup.js.download" id="sendpress-signup-form-js-js"></script>
+<script async="" type="text/javascript" src="./BOOTLOADER_files/js" id="google_gtagjs-js"></script>
+<script type="text/javascript" id="google_gtagjs-js-after">
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "UA-3150019-1", {"anonymize_ip":true});
+</script>
+<link rel="https://api.w.org/" href="https://www.electronics-lab.com/wp-json/"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.electronics-lab.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.electronics-lab.com/wp-includes/wlwmanifest.xml">
+<meta name="generator" content="WordPress 5.6.1">
+<meta name="generator" content="WooCommerce 5.0.0">
+<link rel="alternate" type="application/json+oembed" href="https://www.electronics-lab.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.electronics-lab.com%2Fproject%2Finstalling-the-arduino-bootloader-on-the-atmega328p-microcontroller%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.electronics-lab.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.electronics-lab.com%2Fproject%2Finstalling-the-arduino-bootloader-on-the-atmega328p-microcontroller%2F&amp;format=xml">
+<script data-cfasync="false">
+window.a2a_config=window.a2a_config||{};a2a_config.callbacks=[];a2a_config.overlays=[];a2a_config.templates={};
+(function(d,s,a,b){a=d.createElement(s);b=d.getElementsByTagName(s)[0];a.async=1;a.src="https://static.addtoany.com/menu/page.js";b.parentNode.insertBefore(a,b);})(document,"script");
+</script>
+<meta name="generator" content="Site Kit by Google 1.25.0">
+
+<script data-cfasync="false" type="text/javascript">
+ (function() {
+  var oa = document.createElement('script'); oa.type = 'text/javascript';
+  oa.async = true; oa.src = '//electronics-lab.api.oneall.com/socialize/library.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(oa, s);
+ })();
+</script>
+<script type="text/javascript">
+	window._wp_rp_static_base_url = 'https://wprp.zemanta.com/static/';
+	window._wp_rp_wp_ajax_url = "https://www.electronics-lab.com/wp-admin/admin-ajax.php";
+	window._wp_rp_plugin_version = '3.6.4';
+	window._wp_rp_post_id = '74770';
+	window._wp_rp_num_rel_posts = '3';
+	window._wp_rp_thumbnails = true;
+	window._wp_rp_post_title = 'Flashing+Arduino+Bootloader+on+Atmega328p+Microcontroller';
+	window._wp_rp_post_tags = ['program', 'write', 'alt', 'hex', 'languag', 'project', 'beginn', 'code', 'arduino', 'file', 'unit', 'tutori', 'board', 'size', 'flash'];
+	window._wp_rp_promoted_content = true;
+</script>
+<style type="text/css">img#wpstats{display:none}</style> <noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+<link href="./BOOTLOADER_files/css(1)" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* Begin Simple Side Tab Styles*/
+#rum_sst_tab {
+    font-family:"Helvetica Neue", Helvetica, sans-serif;
+    top:350px;
+    background-color:#405D7E;
+    color:#FFFFFF;
+    border-style:solid;
+    border-width:0px;
+}
+
+#rum_sst_tab:hover {
+    background-color: #618cbc;
+	-moz-box-shadow:    -3px -3px 5px 2px #ccc;
+	-webkit-box-shadow: -3px -3px 5px 2px #ccc;
+	box-shadow:         -3px -3px 5px 2px #ccc;
+}
+.rum_sst_contents {
+    position:fixed;
+    margin:0;
+    padding:6px 13px 8px 13px;
+    text-decoration:none;
+    text-align:center;
+    font-size:15px;
+    font-weight:normal;
+    border-style:solid;
+    display:block;
+    z-index:100000;
+}
+.rum_sst_left {
+    left:-2px;
+    cursor: pointer;
+    -webkit-transform-origin:0 0;
+    -moz-transform-origin:0 0;
+    -o-transform-origin:0 0;
+    -ms-transform-origin:0 0;
+    -webkit-transform:rotate(270deg);
+    -moz-transform:rotate(270deg);
+    -ms-transform:rotate(270deg);
+    -o-transform:rotate(270deg);
+    transform:rotate(270deg);
+    -moz-border-radius-bottomright:10px;
+    border-bottom-right-radius:10px;
+    -moz-border-radius-bottomleft:10px;
+    border-bottom-left-radius:10px;
+}
+.rum_sst_right {
+    right:-1px;
+    cursor: pointer;
+    -webkit-transform-origin:100% 100%;
+    -moz-transform-origin:100% 100%;
+    -o-transform-origin:100% 100%;
+    -ms-transform-origin:100% 100%;
+    -webkit-transform:rotate(-90deg);
+    -moz-transform:rotate(-90deg);
+    -ms-transform:rotate(-90deg);
+    -o-transform:rotate(-90deg);
+    transform:rotate(-90deg);
+    -moz-border-radius-topright:10px;
+    border-top-right-radius:10px;
+    -moz-border-radius-topleft:10px;
+    border-top-left-radius:10px;
+}
+.rum_sst_right.less-ie-9 {
+    right:-120px;
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+.rum_sst_left.less-ie-9 {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+/* End Simple Side Tab Styles*/
+</style>
+<style type="text/css">
+                    <!--
+                    
+            @font-face {
+                font-family: 'aslsicons2';
+                src: url('https://www.electronics-lab.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.eot');
+                src: url('https://www.electronics-lab.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.eot?#iefix') format('embedded-opentype'),
+                     url('https://www.electronics-lab.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.woff2') format('woff2'),
+                     url('https://www.electronics-lab.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.woff') format('woff'),
+                     url('https://www.electronics-lab.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.ttf') format('truetype'),
+                     url('https://www.electronics-lab.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.svg#icons') format('svg');
+                font-weight: normal;
+                font-style: normal;
+            }
+            div[id*='ajaxsearchlitesettings'].searchsettings .asl_option_inner label {
+                font-size: 0px !important;
+                color: rgba(0, 0, 0, 0);
+            }
+            div[id*='ajaxsearchlitesettings'].searchsettings .asl_option_inner label:after {
+                font-size: 11px !important;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+            }
+            div[id*='ajaxsearchlite'].wpdreams_asl_container {
+                width: 322px;
+                margin: 0px 0px 0px 0px;
+            }
+            div[id*='ajaxsearchliteres'].wpdreams_asl_results div.resdrg span.highlighted {
+                font-weight: bold;
+                color: rgba(217, 49, 43, 1);
+                background-color: rgba(238, 238, 238, 1);
+            }
+            div[id*='ajaxsearchliteres'].wpdreams_asl_results .results div.asl_image {
+                width: 70px;
+                height: 70px;
+            }
+            div.asl_r .results {
+                max-height: none;
+            }
+            
+                div.asl_r.asl_w.vertical .results .item::after {
+                    display: block;
+                    position: absolute;
+                    bottom: 0;
+                    content: '';
+                    height: 1px;
+                    width: 100%;
+                    background: #D8D8D8;
+                }
+                div.asl_r.asl_w.vertical .results .item.asl_last_item::after {
+                    display: none;
+                }
+                                    -->
+                </style>
+<script type="text/javascript">
+                if ( typeof _ASL !== "undefined" && _ASL !== null && typeof _ASL.initialize !== "undefined" )
+                    _ASL.initialize();
+            </script>
+<link rel="icon" href="https://www.electronics-lab.com/wp-content/uploads/2020/09/cropped-favicon_icon2-1-32x32.png" sizes="32x32">
+<link rel="icon" href="https://www.electronics-lab.com/wp-content/uploads/2020/09/cropped-favicon_icon2-1-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="https://www.electronics-lab.com/wp-content/uploads/2020/09/cropped-favicon_icon2-1-180x180.png">
+<meta name="msapplication-TileImage" content="https://www.electronics-lab.com/wp-content/uploads/2020/09/cropped-favicon_icon2-1-270x270.png">
+
+
+<link href="./BOOTLOADER_files/css(2)" rel="stylesheet">
+
+<link href="./BOOTLOADER_files/jquery.mCustomScrollbar.min.css" type="text/css" rel="stylesheet">
+
+<link href="./BOOTLOADER_files/mystyle.css" type="text/css" rel="stylesheet">
+<link href="./BOOTLOADER_files/enlighterjs.min(1).css" type="text/css" rel="stylesheet">
+<link href="./BOOTLOADER_files/resposnive.css" type="text/css" rel="stylesheet">
+
+<script src="./BOOTLOADER_files/jquery.min.js(1).download" type="text/javascript"></script>
+<script src="./BOOTLOADER_files/custom.js.download" type="text/javascript"></script>
+<link href="./BOOTLOADER_files/shop.css" type="text/css" rel="stylesheet">
+<script type="text/javascript">
+ 
+jQuery.noConflict();
+</script>
+
+<script type="text/javascript">
+ var googletag = googletag || {};
+ googletag.cmd = googletag.cmd || [];
+ (function() {
+   var gads = document.createElement("script");
+   gads.async = true;
+   gads.type = "text/javascript";
+   var useSSL = "https:" == document.location.protocol;
+   gads.src = (useSSL ? "https:" : "http:") + "//www.googletagservices.com/tag/js/gpt.js";
+   var node =document.getElementsByTagName("script")[0];
+   node.parentNode.insertBefore(gads, node);
+  })();
+</script>
+
+<script type="text/javascript">var clicks=1;function hit(b){var a=clicks++;jQuery.ajax({url:"https://www.electronics-lab.com/wp-content/plugins/download-management/download.php?id="+b+"&count="+a,dataType:"",type:"POST",success:function(c){$("#hitd").html(c)}})};</script>
+
+<script src="./BOOTLOADER_files/embed.js.download" type="text/javascript"></script>
+<script src="./BOOTLOADER_files/wp-emoji-release.min.js(1).download" type="text/javascript" defer=""></script><meta http-equiv="origin-trial" content="A9ZgbRtm4pU3oZiuNzOsKcC8ppFSZdcjP2qYcdQrFKVzkmiWH1kdYY1Mi9x7G8+PS8HV9Ha9Cz0gaMdKsiVZIgMAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A3HucHUo1oW9s+9kIKz8mLkbcmdaj5lxt3eiIMp1Nh49dkkBlg1Fhg4Fd/r0vL69mRRA36YutI9P/lJUfL8csQoAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A9ZgbRtm4pU3oZiuNzOsKcC8ppFSZdcjP2qYcdQrFKVzkmiWH1kdYY1Mi9x7G8+PS8HV9Ha9Cz0gaMdKsiVZIgMAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A3HucHUo1oW9s+9kIKz8mLkbcmdaj5lxt3eiIMp1Nh49dkkBlg1Fhg4Fd/r0vL69mRRA36YutI9P/lJUfL8csQoAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><script src="./BOOTLOADER_files/pubads_impl_2021021001.js.download" async=""></script><link rel="preload" href="./BOOTLOADER_files/f(6).txt" as="script"><script type="text/javascript" src="./BOOTLOADER_files/f(6).txt"></script><link rel="preload" href="./BOOTLOADER_files/f(7).txt" as="script"><script type="text/javascript" src="./BOOTLOADER_files/f(7).txt"></script><link rel="prefetch" href="https://3109b032a74e2fc77d11e1352308c0fa.safeframe.googlesyndication.com/safeframe/1-0-37/html/container.html"><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-37/html/container.html"><link rel="stylesheet" type="text/css" href="./BOOTLOADER_files/style(6).css"><link rel="stylesheet" type="text/css" href="./BOOTLOADER_files/style(7).css"><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./BOOTLOADER_files/hovercard.min(1).css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./BOOTLOADER_files/services.min(1).css"><script type="text/javascript" src="./BOOTLOADER_files/library.js(1).download"></script><link rel="stylesheet" type="text/css" href="./BOOTLOADER_files/base.css"><link rel="stylesheet" type="text/css" href="./BOOTLOADER_files/btns_hfrr.css"><script type="text/javascript" src="./BOOTLOADER_files/plusone.js.download" gapi_processed="true"></script><script type="text/javascript" src="./BOOTLOADER_files/widgets.js.download"></script><script type="text/javascript" src="./BOOTLOADER_files/counters.js.download"></script><script charset="utf-8" src="./BOOTLOADER_files/button.cf7aaea83eb75b84ae4508f0ceb5dc4c.js.download"></script></head>
+<body class="project-template-default single single-project postid-74770 theme-elab woocommerce-js yith-wcan-free">
+<div id="page" class="site">
+<a class="skip-link screen-reader-text" href="https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#content">Skip to content</a>
+<header id="masthead">
+<div class="header-top">
+<div class="container">
+<div id="text-61" class="widget widget_text"> <div class="textwidget"><div class="top-left"><a class="android-ico" href="https://www.electronics-lab.com/android-app/">Android APP</a><a class="contact-ico" href="https://www.electronics-lab.com/contact-us/">Contact Us</a><br>
+
+</div>
+<div class="top-right"><span class="user-option"><br>
+<a href="https://www.electronics-lab.com/community/index.php?/login/">login</a>/<br>
+<a href="https://www.electronics-lab.com/community/index.php?/register/">register</a><br>
+</span><br>
+<a class="btn-upload-project" href="https://www.electronics-lab.com/project-upload/">Upload Project</a></div>
+</div>
+</div> </div>
+</div>
+<div class="header-logo">
+<div class="container">
+<div class="site-branding logo">
+<a href="https://www.electronics-lab.com/" rel="home"><img src="./BOOTLOADER_files/logo4.png" alt="electroniclabs" title="electroniclabs"></a>
+</div>
+<div class="header-advertisements">
+<a target="_blank" class="ads_statistics" value="7" id="985976" href="https://www.voopoo.com/drag-series/drag-x-plus.html"><img src="./BOOTLOADER_files/1611300771_voopoo.jpg"></a> </div>
+</div>
+</div>
+<nav id="site-navigation" class="main-navigation">
+<div class="container">
+<button class="menu-toggle responsive-menu-ico" aria-controls="primary-menu" aria-expanded="false">Primary Menu</button>
+<div class="menu-wrappers">
+<div class="responsive-logos">
+<a href="https://www.electronics-lab.com/" rel="home"><img src="./BOOTLOADER_files/logo.png" alt="electroniclabs" title="electroniclabs"></a>
+<button class="menu-toggle responsive-menu-ico custom-btn-close" aria-controls="primary-menu" aria-expanded="false">Primary Menu</button>
+</div>
+<div class="menu-top-menu-container"><ul id="primary-menu" class="menu nav-menu" aria-expanded="false"><li id="menu-item-32737" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-32737"><a href="https://www.electronics-lab.com/">Home</a></li>
+<li id="menu-item-32859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-32859"><a href="https://www.electronics-lab.com/projects/">Projects</a>
+<ul class="sub-menu">
+<li id="menu-item-32821" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32821"><a href="https://www.electronics-lab.com/projectcategory/projects/audio/">Audio</a></li>
+<li id="menu-item-32834" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32834"><a href="https://www.electronics-lab.com/projectcategory/projects/arduino/">Arduino</a></li>
+<li id="menu-item-32822" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32822"><a href="https://www.electronics-lab.com/projectcategory/projects/automotive/">Automotive</a></li>
+<li id="menu-item-32823" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32823"><a href="https://www.electronics-lab.com/projectcategory/projects/game-and-entetainment-robots/">Game – Robots</a></li>
+<li id="menu-item-63360" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-63360"><a href="https://www.electronics-lab.com/projectcategory/projects/mcu-development/">MCU Development</a></li>
+<li id="menu-item-32824" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32824"><a href="https://www.electronics-lab.com/projectcategory/projects/microcontroller/">Microcontroller</a></li>
+<li id="menu-item-32825" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32825"><a href="https://www.electronics-lab.com/projectcategory/projects/miscellaneous/">Miscellaneous</a></li>
+<li id="menu-item-63359" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-63359"><a href="https://www.electronics-lab.com/projectcategory/projects/motor-control/">Motor Control</a></li>
+<li id="menu-item-64157" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-64157"><a href="https://www.electronics-lab.com/projectcategory/projects/modules/">Modules</a></li>
+<li id="menu-item-32826" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32826"><a href="https://www.electronics-lab.com/projectcategory/projects/moterlight-and-power-control/">Light – Power Control</a></li>
+<li id="menu-item-32827" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32827"><a href="https://www.electronics-lab.com/projectcategory/projects/oscllators-and-timers/">Oscillators – Timers</a></li>
+<li id="menu-item-32828" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32828"><a href="https://www.electronics-lab.com/projectcategory/projects/pc-related/">PC Related</a></li>
+<li id="menu-item-32829" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32829"><a href="https://www.electronics-lab.com/projectcategory/projects/power/">Power</a></li>
+<li id="menu-item-32830" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32830"><a href="https://www.electronics-lab.com/projectcategory/projects/rf-circuits/">RF Circuits</a></li>
+<li id="menu-item-32832" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32832"><a href="https://www.electronics-lab.com/projectcategory/projects/science-related/">Science</a></li>
+<li id="menu-item-32833" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32833"><a href="https://www.electronics-lab.com/projectcategory/projects/security-and-other-sensors-and-detectors/">Sensors – Detectors</a></li>
+<li id="menu-item-32835" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-32835"><a href="https://www.electronics-lab.com/projectcategory/projects/test-and-measurement/">Test – Measurement</a></li>
+</ul>
+</li>
+<li id="menu-item-32735" class="download-drop menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-32735"><a href="https://www.electronics-lab.com/downloads/">Downloads</a>
+<ul class="sub-menu">
+<li id="menu-item-79639" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79639"><a href="https://www.electronics-lab.com/downloads/android">Android</a></li>
+<li id="menu-item-79640" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79640"><a href="https://www.electronics-lab.com/downloads/audio">Audio Software</a></li>
+<li id="menu-item-79641" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79641"><a href="https://www.electronics-lab.com/downloads/CAD">CAD/CAM Software</a></li>
+<li id="menu-item-79642" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79642"><a href="https://www.electronics-lab.com/downloads/calculators">Calculators / Info</a></li>
+<li id="menu-item-79643" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79643"><a href="https://www.electronics-lab.com/downloads/circutedesignsimulation">Design / Simulation</a></li>
+<li id="menu-item-79644" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79644"><a href="https://www.electronics-lab.com/downloads/measurementsusingpc">PC Measurements</a></li>
+<li id="menu-item-79645" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79645"><a href="https://www.electronics-lab.com/downloads/microcontrollers">Microcontrollers</a></li>
+<li id="menu-item-79646" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79646"><a href="https://www.electronics-lab.com/downloads/miscellaeous">Miscellaneous</a></li>
+<li id="menu-item-79647" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79647"><a href="https://www.electronics-lab.com/downloads/pcb">PCB Design</a></li>
+<li id="menu-item-79648" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79648"><a href="https://www.electronics-lab.com/downloads/smartphones">Smartphone</a></li>
+</ul>
+</li>
+<li id="menu-item-32734" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32734"><a href="https://www.electronics-lab.com/articles/">Articles</a></li>
+<li id="menu-item-81957" class="cad-tools-menu menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-81957"><a href="https://www.electronics-lab.com/search-parts/?search_token=ne555d&amp;series_token=ne555">CAD Tools</a>
+<ul class="sub-menu">
+<li id="menu-item-104399" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-104399"><a href="https://www.electronics-lab.com/search-parts/?search_token=ne555d&amp;series_token=ne555">Search Parts</a></li>
+<li id="menu-item-104398" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-104398"><a target="_blank" rel="noopener" href="https://analytics.oemsecrets.com/main.php?utm_campaign=bom-launch-toolbar&amp;utm_source=electronics-lab&amp;utm_medium=website&amp;utm_term=giveaway&amp;event_link=https%3A%2F%2Fbomtool.oemsecrets.com/login%3Futm_campaign%3Dbom-launch-giveaway%26utm_source%3Delectronics-lab%26medium%3Dclick-through">Upload BOM</a></li>
+<li id="menu-item-104458" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-104458"><a href="https://www.google.com/">CAD Models</a></li>
+</ul>
+</li>
+<li id="menu-item-36402" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-36402"><a href="https://www.electronics-lab.com/community/">Community</a></li>
+<li id="menu-item-32731" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32731"><a href="https://www.electronics-lab.com/blog/">Blog</a></li>
+<li id="menu-item-90868" class="pcbonlinen menu-item menu-item-type-custom menu-item-object-custom menu-item-90868"><a title="PCBONLINE PCB service" target="_blank" rel="noopener" href="https://www.pcbonline.com/" class="menu-image-title-before menu-image-not-hovered"><span class="menu-image-title-before menu-image-title">PCBONLINE</span><img width="17" height="30" src="./BOOTLOADER_files/gif_transparent-1.gif" class="menu-image menu-image-title-before" alt="" loading="lazy"></a></li>
+<li id="menu-item-92811" class="pcbonlinen menu-item menu-item-type-custom menu-item-object-custom menu-item-92811"><a target="_blank" rel="noopener" href="https://www.pcbway.com/free_pcb.html?from=EL20" class="menu-image-title-before menu-image-not-hovered"><span class="menu-image-title-before menu-image-title">FREE PCB</span><img width="17" height="30" src="./BOOTLOADER_files/freepcb.gif" class="menu-image menu-image-title-before" alt="" loading="lazy"></a></li>
+<li id="menu-item-95470" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-95470"><a target="_blank" rel="noopener" href="https://jlcpcb.com/" class="menu-image-title-before menu-image-not-hovered"><span class="menu-image-title-before menu-image-title"><img src="./BOOTLOADER_files/jlpsclogo.jpg" style="height:17px;"></span><img width="18" height="20" src="./BOOTLOADER_files/2.png" class="menu-image menu-image-title-before" alt="" loading="lazy"></a></li>
+<li id="menu-item-95472" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-95472"><a target="_blank" rel="noopener" href="https://www.mokotechnology.com/?utm_source=Elab" class="menu-image-title-before menu-image-not-hovered"><span class="menu-image-title-before menu-image-title"><img src="./BOOTLOADER_files/moko.png" style="height:17px;"></span><img width="17" height="30" src="./BOOTLOADER_files/freepcb.gif" class="menu-image menu-image-title-before" alt="" loading="lazy"></a></li>
+</ul></div> <div class="home-search">
+<div id="search-8" class="widget home-search-widget widget_search"><form role="search" method="get" class="search-form" action="https://www.electronics-lab.com/">
+<label>
+<span class="screen-reader-text">Search for:</span>
+<input type="search" class="search-field" placeholder="Search …" value="" name="s">
+</label>
+<input type="submit" class="search-submit" value="Search">
+</form></div> </div>
+</div>
+</div>
+</nav>
+</header></div>
+
+<div id="content" class="site-content" style="height: auto !important;">
+<div id="primary" class="content-area">
+<div class="main-content-area" style="height: auto !important;">
+<main id="main" class="site-main">
+<div class="pagination-links" style="height: auto !important;">
+<div class="container">
+
+<div id="bcn_widget-3" class="widget breadcrumb-full widget_breadcrumb_navxt" style="height: auto !important;">
+<span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to Electronics-Lab.com." href="https://www.electronics-lab.com/" class="home"><span property="name">Home</span></a><meta property="position" content="1"></span><span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to Projects." href="https://www.electronics-lab.com/projects/" class="project-root post post-project"><span property="name">Projects</span></a><meta property="position" content="2"></span><span property="itemListElement" typeof="ListItem" class="Projects"><a property="item" typeof="WebPage" title="Go to the Projects projectcategory archives." href="https://www.electronics-lab.com/projectcategory/projects/" class="taxonomy projectcategory"><span property="name">Projects</span></a><meta property="position" content="3"></span><span property="itemListElement" typeof="ListItem" class="Arduino"><a property="item" typeof="WebPage" title="Go to the Arduino projectcategory archives." href="https://www.electronics-lab.com/projectcategory/projects/arduino/" class="taxonomy projectcategory"><span property="name">Arduino</span></a><meta property="position" content="4"></span><span class="post post-project current-item">Flashing Arduino Bootloader on Atmega328p Microcontroller</span><div class="google-auto-placed" style="width: 100%; height: auto; clear: none; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-6394990980523463" data-adsbygoogle-status="done" style="display: block; margin: 10px auto; background-color: transparent; height: 280px;"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:1200px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_1_anchor" style="display: block; border: none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 1200px; background-color: transparent; overflow: visible;"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:1200px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="1200" height="280" frameborder="0" src="./BOOTLOADER_files/ads.html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!4" data-google-query-id="CKKNt7Le7O4CFYcUGAodv7gKMQ" data-load-complete="true"></iframe></ins></ins></ins></div></div>
+</div>
+</div>
+<div class="main-project-details" style="height: auto !important;">
+<div class="add-barbox">
+<div class="topadd-barbox">
+<a class="no_popup1 ads_statistics test123" value="0" href="https://analytics.oemsecrets.com/main.php?utm_campaign=avnet-2021cw07-EMEA-EBV-ST-STM32-BAN-BG-campaign-LP-ELAB-202102&amp;utm_source=elab&amp;utm_medium=banner&amp;utm_term=background&amp;utm_content=2021-02-15&amp;event_link=https%3A%2F%2Fwww.avnet.com%2Fwps%2Fportal%2Febv%2Fproducts%2Fproduct-highlights%2Fstmicroelectronics-stm32%2F%3Fcmp%3DEMEA-EBV-ST-STM32-BAN-BG-campaign-LP-ELAB-202102" target="_blank" id="896574"><img src="./BOOTLOADER_files/133427065background_ad_1566x726.png" alt=""></a> </div>
+</div>
+<div class="container">
+<div class="project-full-description" style="height: auto !important;">
+<div class="projects-description-info" style="height: auto !important;">
+<h1>Flashing Arduino Bootloader on Atmega328p Microcontroller</h1>
+<div class="project-basic-info">
+<ul>
+<li class="project-user">
+<span>Emmanuel Odunlade</span>
+</li>
+<li class="project-domain">
+<a href="https://twitter.com/emmaodunlade">
+https://twitter.com/emmaodunlade </a></li>
+<li class="project-email">
+<a href="mailto:emmaodunlade@gmail.com">
+emmaodunlade@gmail.com </a>
+</li>
+<li class="project-Views">
+<span> <script type="text/javascript">
+                document.cookie="kentopvc_74770=yes";
+            </script>
+<div id="kento-pvc-single"><span class="kento-pvc-total"> 22824</span></div> <small>Views</small></span>
+</li>
+<li class="Moderate">
+<span>moderate<span>
+
+</span></span></li>
+<li class="p_test">Tested</li>
+</ul>
+</div>
+<div class="header-advertisements">
+
+<div id="leaderboard1" data-google-query-id="CKLGqbLe7O4CFVCBgwcd3C8Jzw">
+
+<div id="google_ads_iframe_/4250/ElectronicsLab_0__container__" style="border: 0pt none; display: inline-block; width: 728px; height: 90px;"><iframe frameborder="0" src="./BOOTLOADER_files/container.html" id="google_ads_iframe_/4250/ElectronicsLab_0" title="3rd party ad content" name="" scrolling="no" marginwidth="0" marginheight="0" width="728" height="90" data-is-safeframe="true" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" data-google-container-id="1" style="border: 0px; vertical-align: bottom;" data-load-complete="true"></iframe></div></div> </div>
+<div class="content"><h3>Introduction</h3>
+<p>Cost and size, just to mention a few, makes using an Arduino board in certain projects an overkill, often times its always too big, or too expensive for the scope of the project especially when it’s a project that we need to make several units. One good way to retain the&nbsp;simplicity that comes with the use of the Arduino platform while avoiding all other deficiencies is to use the <strong>Atmega328p</strong> microcontroller alone and program it using the Arduino IDE and its simplified version of the C programming language. However, the&nbsp;atmega328p microcontroller cannot be used&nbsp;with the&nbsp;Arduino IDE until it is flashed with the Arduino&nbsp;bootloader.</p>
+<p>Our goal for this tutorial will be to understand how the Arduino bootloader works and how an Atmeg328p microcontroller can be flashed with it.</p>
+<figure id="attachment_74814" aria-describedby="caption-attachment-74814" style="width: 500px" class="wp-caption aligncenter"><a href="./BOOTLOADER_files/Atmeg328p-1.jpg" data-slb-active="1" data-slb-asset="844239417" data-slb-internal="0" data-slb-group="74770"><img loading="lazy" class="size-full wp-image-74814" src="./BOOTLOADER_files/Atmeg328p-1.jpg" alt="" width="500" height="499" srcset="https://www.electronics-lab.com/wp-content/uploads/2018/07/Atmeg328p-1.jpg 500w, https://www.electronics-lab.com/wp-content/uploads/2018/07/Atmeg328p-1-100x100.jpg 100w, https://www.electronics-lab.com/wp-content/uploads/2018/07/Atmeg328p-1-150x150.jpg 150w, https://www.electronics-lab.com/wp-content/uploads/2018/07/Atmeg328p-1-300x300.jpg 300w" sizes="(max-width: 500px) 100vw, 500px"></a><figcaption id="caption-attachment-74814" class="wp-caption-text">Atmega328P mcu</figcaption></figure>
+<p style="text-align: center; display: none;"></p><center>
+<div id="tile1" data-google-query-id="COPDqbLe7O4CFZDUdwodRrUOxw">
+
+<div id="google_ads_iframe_/4250/ElectronicsLab_1__container__" style="border: 0pt none; display: inline-block; width: 300px; height: 250px;"><iframe frameborder="0" src="./BOOTLOADER_files/container(1).html" id="google_ads_iframe_/4250/ElectronicsLab_1" title="3rd party ad content" name="" scrolling="no" marginwidth="0" marginheight="0" width="300" height="250" data-is-safeframe="true" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" data-google-container-id="2" style="border: 0px; vertical-align: bottom;" data-load-complete="true"></iframe></div></div>
+</center>
+<h3>The Arduino Bootloader</h3>
+<p>Programming microcontrollers can be a bit tricky, as they require special programmers and .hex files, not to mention the huge knowledge of the C programming language required to write the code. It’s not beginner friendly, thus to eradicate these issues, Arduino created a .hex file which can be installed on AVR chips that allow you to program the board over a serial port, ensuring all that is needed to program a microcontroller (after installing the hex file) is a serial connection between the microcontroller and the Computer which can be achieved using a USB to UART adapter. This hex file is called the Arduino <strong>Bootloader</strong>.</p>
+<p>The bootloader is very similar to the BIOS Running on a PC and performs two tasks:</p>
+<ol>
+<li>It monitors the serial communication line to see if the computer is trying to program it. If this is the case, it accepts the code from the computer and stores it in a specific location in the memory of the microcontroller in such a way that the bootloader itself is not overwritten.</li>
+<li>When the computer isn’t trying to upload code to the microcontroller, the bootloader instructs the chip to run the code that’s already stored in memory. Once it locates and runs your program, the Arduino continuously loops through the program and does so as long as the board has power.</li>
+</ol>
+<p>Asides from the need to use the Atmega328p in standalone mode, flashing the microcontroller with the <strong>bootloader</strong> may be necessary when you need to replace the microcontroller on your Uno board for instance or when you need to restore a bricked board which no longer allows code uploads.</p>
+<h3>Burning the Bootloader to a Microcontroller</h3>
+<p>There are quite a number of techniques for burning the Arduino bootloader to the microcontroller but we will focus on using the easiest method which involves the use of the Arduino board as an In-System Programmer (ISP).</p>
+<p>During the manufacturing process for electronic devices, microcontrollers are usually programmed after they have been mounted on the PCB. This Programming process is referred to as In-System Programming (ISP) and it requires the PCB to have certain header pins through which the microcontroller can be accessed for programming. Most Arduino and Arduino boards also come with this feature as they usually have 2X3 pin headers which are used for a form of In-System programming known as in-circuit serial programming (ICSP). The header pins comprise of 3 SPI pins (MOSI(D11), MISO(D12), SCK(D13)), VCC, GND&nbsp; and a reset pin and these are the pins used to program the microcontroller on the Arduino. By connecting a Atmeg328p microcontroller to these pins, we will be able to flash the Atmeg328p microcontroller with the Arduino bootloader.</p>
+<h3>Required Components</h3>
+<p>The following components are required to follow this tutorial;</p>
+<ol>
+<li>Arduino Uno/Duemilanove</li>
+<li>Jumper Wires</li>
+<li>BreadBoard</li>
+<li>Atmega328p microcontroller</li>
+<li>16 MHz crystal oscillator</li>
+<li>22pf capacitors</li>
+</ol>
+<h3>Bootloader Upload Procedure</h3>
+<p><strong>1. Prepare the Arduino as an ISP Programmer</strong></p>
+<p>Under the examples shipped with the Arduino IDE is the “Arduino as ISP” example which when uploaded to an Arduino board transforms the board into an ISP programmer. Open the example and Upload to your Arduino Uno or Duemilanove.</p>
+<p>&nbsp;</p>
+<figure id="attachment_74798" aria-describedby="caption-attachment-74798" style="width: 486px" class="wp-caption aligncenter"><a href="./BOOTLOADER_files/Arduino-as-ISP.jpg" data-slb-active="1" data-slb-asset="2097479091" data-slb-internal="0" data-slb-group="74770"><img loading="lazy" class="size-full wp-image-74798" src="./BOOTLOADER_files/Arduino-as-ISP.jpg" alt="" width="486" height="593" srcset="https://www.electronics-lab.com/wp-content/uploads/2018/07/Arduino-as-ISP.jpg 486w, https://www.electronics-lab.com/wp-content/uploads/2018/07/Arduino-as-ISP-246x300.jpg 246w, https://www.electronics-lab.com/wp-content/uploads/2018/07/Arduino-as-ISP-123x150.jpg 123w" sizes="(max-width: 486px) 100vw, 486px"></a><figcaption id="caption-attachment-74798" class="wp-caption-text">Arduino as ISP Example</figcaption></figure>
+<p><strong>2. Wiring&nbsp;</strong></p>
+<p>Next, connect the Atmega328p to be flashed to the Arduino via a breadboard as shown in the Schematics below.</p>
+<figure id="attachment_74813" aria-describedby="caption-attachment-74813" style="width: 1539px" class="wp-caption aligncenter"><a href="./BOOTLOADER_files/Bootloader-schematics.png" data-slb-active="1" data-slb-asset="843701832" data-slb-internal="0" data-slb-group="74770"><img loading="lazy" class="size-full wp-image-74813" src="./BOOTLOADER_files/Bootloader-schematics.png" alt="" width="1539" height="957" srcset="https://www.electronics-lab.com/wp-content/uploads/2018/07/Bootloader-schematics.png 1539w, https://www.electronics-lab.com/wp-content/uploads/2018/07/Bootloader-schematics-600x373.png 600w, https://www.electronics-lab.com/wp-content/uploads/2018/07/Bootloader-schematics-300x187.png 300w, https://www.electronics-lab.com/wp-content/uploads/2018/07/Bootloader-schematics-768x478.png 768w, https://www.electronics-lab.com/wp-content/uploads/2018/07/Bootloader-schematics-1024x637.png 1024w, https://www.electronics-lab.com/wp-content/uploads/2018/07/Bootloader-schematics-150x93.png 150w" sizes="(max-width: 1539px) 100vw, 1539px"></a><figcaption id="caption-attachment-74813" class="wp-caption-text">Schematics</figcaption></figure>
+<p style="text-align: center;"><a class="no_popup1 ads_statistics test123" value="0" href="https://jlcpcb.com/" target="_blank" id="578247"><img src="./BOOTLOADER_files/1703531989JLCPCB.gif" alt=""></a>
+</p><p>Below is a pin map of the connections so it is easier to follow.</p>
+<pre><strong>Arduino - Atmega328P
+</strong>D13 - Pin 19
+D12 - Pin 18
+D11 - Pin 17
+D10 - Pin 1 Reset (no Capacitor needed).
+VCC - 5V
+GND - GND</pre>
+<p>Some setups include extra parts like LEDs which are used to monitor the bootloading status, but these are not necessary, as long as your connections are correct, burning the bootloader takes only a couple of minutes.</p>
+<p><strong>3. Burn the Bootloader</strong></p>
+<p>With the connections done, we are now ready to burn the bootloader.</p>
+<p>Prepare the Arduino IDE by going to tools, Boards, then select the Arduino Uno as the board type. With that done, go to tools&gt;programmer and select “<strong>Arduino as ISP</strong>” as the programmer. The final action to burn the bootloader is to go to tools and select Burn Bootloader. It will take the board you selected and search the board.txt file for the bootloader associated to it in the bootloader folder. It is important that your Arduino IDE is properly installed with all the board files as this will not work if the selected board type is not available, but its a very rare scenario.</p>
+<figure id="attachment_74801" aria-describedby="caption-attachment-74801" style="width: 486px" class="wp-caption aligncenter"><a href="./BOOTLOADER_files/burn-bootloader.jpg" data-slb-active="1" data-slb-asset="1755469489" data-slb-internal="0" data-slb-group="74770"><img loading="lazy" class="size-full wp-image-74801" src="./BOOTLOADER_files/burn-bootloader.jpg" alt="" width="486" height="593" srcset="https://www.electronics-lab.com/wp-content/uploads/2018/07/burn-bootloader.jpg 486w, https://www.electronics-lab.com/wp-content/uploads/2018/07/burn-bootloader-246x300.jpg 246w, https://www.electronics-lab.com/wp-content/uploads/2018/07/burn-bootloader-123x150.jpg 123w" sizes="(max-width: 486px) 100vw, 486px"></a><figcaption id="caption-attachment-74801" class="wp-caption-text">Select Burn Bootloader</figcaption></figure>
+<p>&nbsp;</p>
+<p>With this done, You should now be able to upload&nbsp;any code directly from the Arduino IDE to the Atmega328P microcontroller and use it for standalone purposes.</p>
+<p>With the bootloader now on the chip, you can start uploading custom Arduino sketches to it following the tutorial <a href="https://www.electronics-lab.com/project/programming-atmega328p-microcontroller-with-arduino-ide/">here</a>.</p>
+<p>That’s it for this tutorial, Thanks for reading. Feel free to drop any question you might have as regards this via the comment section.</p>
+<p>Till next time</p>
+</div>
+
+<div class="social_share_buttons" style="height: auto !important;">
+<div class="google-auto-placed" style="width: 100%; height: auto; clear: none; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-6394990980523463" data-adsbygoogle-status="done" style="display: block; margin: 10px auto; background-color: transparent; height: 280px;"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:930px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_3_anchor" style="display: block; border: none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 930px; background-color: transparent; overflow: visible;"><iframe id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;border:0;width:930px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="930" height="280" frameborder="0" src="./BOOTLOADER_files/ads(1).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!5" data-google-query-id="COSfqsHe7O4CFRVbGAoddl0FSg" data-load-complete="true"></iframe></ins></ins></ins></div><div class="oneall_sharing_icons oneall_sharing_icons_custom"><span class="oas_box oas_box_btns_hfrr oas_box_custom" data-title="Flashing Arduino Bootloader on Atmega328p Microcontroller - Electronics-Lab.com" data-url="https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/" data-processed="1"><span class="oas_btn oas_btn_facebook oas_btn_service" title="Share On Facebook"><span class="oas_btn_brd"><span class="oas_btn_ico oas_icons_white"></span><span class="oas_btn_txt">Share On Facebook</span></span></span><span class="oas_btn oas_btn_twitter oas_btn_service" title="Share On Twitter"><span class="oas_btn_brd"><span class="oas_btn_ico oas_icons_white"></span><span class="oas_btn_txt">Share On Twitter</span></span></span><span class="oas_btn oas_btn_linkedin oas_btn_service" title="Share On LinkedIn"><span class="oas_btn_brd"><span class="oas_btn_ico oas_icons_white"></span><span class="oas_btn_txt">Share On LinkedIn</span></span></span><span class="oas_btn oas_btn_google_plus oas_btn_service" title="Share On Google Plus"><span class="oas_btn_brd"><span class="oas_btn_ico oas_icons_white"></span><span class="oas_btn_txt">Share On Google Plus</span></span></span><span class="oas_btn oas_btn_email oas_btn_service" title="Email"><span class="oas_btn_brd"><span class="oas_btn_ico oas_icons_white"></span><span class="oas_btn_txt">Email</span></span></span><span class="oas_btn oas_btn_counter" title=""><span class="oas_btn_brd"><span class="oas_btn_txt"><span class="oas_btn_counter_count"><span class="oas_btn_shares_tot oas_btn_counter_count_sum" data-count="7">7</span></span> <span class="oas_btn_counter_text"><span class="oas_btn_shares_label oas_btn_counter_text_shares" data-text-singular="Share" data-text-plural="Shares">Shares</span></span></span></span></span><span class="oas_btn oas_btn_facebook_like_but oas_btn_addon" title="Share On Facebook Like Button"><iframe src="./BOOTLOADER_files/like.html" scrolling="no" frameborder="0" style="border:none;overflow:hidden;" allowtransparency="true"></iframe></span><span class="oas_btn oas_btn_google_plus_one_but oas_btn_addon" title="Share On Google +1 Button"><div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1613421212711" name="I0_1613421212711" src="./BOOTLOADER_files/fastbutton.html" data-gapiattached="true"></iframe></div><div id="oa_bpk_9403" class="g-plusone" data-size="medium" data-annotation="none" data-gapiscan="true" data-onload="true" data-gapistub="true"></div></span><span class="oas_btn oas_btn_twitter_tweet_but oas_btn_addon" title="Share On Twitter Tweet Button"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 60px; height: 20px;" title="Twitter Tweet Button" src="./BOOTLOADER_files/tweet_button.6e189c4f2b6d88c453045806323cdcf3.en.html"></iframe></span></span></div> </div>
+<div class="new_advertisement">
+<a href="https://jlcpcb.com/" target="_blank" rel="nofollow" class="jlc_title">JLCPCB - Only $2 for PCB Prototype (Any Color)</a>
+<p>
+<a href="https://jlcpcb.com/" target="_blank" rel="nofollow">24 Hours fast turnaround, Excellent quality &amp; Unbeatable prices</a><br>
+</p>
+<p>
+<b>$18 Welcome Bonus for new registrations Now <a href="https://jlcpcb.com/" target="_blank" rel="nofollow">https://jlcpcb.com</a>
+</b>
+</p>
+</div>
+
+</div>
+<div class="advertisement">
+<a class="no_popup1 ads_statistics test123" value="0" href="https://www.pcbway.com/free_pcb.html?from=EL20" target="_blank" id="602838"><img src="./BOOTLOADER_files/17671913421200x124px.png" alt=""></a>
+</div>
+<div class="project-comments-area">
+<div id="comments" class="comments-area project">
+<h2 class="comments-title">
+Comments </h2>
+<ul class="commentlist">
+</ul>
+<ul class="commentlist">
+<li class="comment even thread-even depth-1 parent" id="comment-190573">
+<div id="div-comment-190573" class="comment-body">
+<div class="comment-author vcard ping">
+<div class="author-avatar"><img alt="" src="./BOOTLOADER_files/b1bb16afb6ffb2f28269e0796fae7b41.png" srcset="https://secure.gravatar.com/avatar/b1bb16afb6ffb2f28269e0796fae7b41?s=148&amp;d=mm&amp;r=g 2x" class="avatar avatar-74 photo grav-hashed grav-hijack" height="74" width="74" loading="lazy" id="grav-b1bb16afb6ffb2f28269e0796fae7b41-0"></div>
+</div>
+<div class="author_comment">
+<div class="author_info">
+<span class="author-name"><a href="https://jotrin.wordpress.com/" rel="external nofollow ugc" class="url">Jotrin Electronics</a></span>
+</div>
+<div class="comment_text">
+<p>how to buy it</p>
+<span>2 years ago</span>
+</div>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#comment-190573" data-commentid="190573" data-postid="74770" data-belowelement="div-comment-190573" data-respondelement="respond" data-replyto="Reply to Jotrin Electronics" aria-label="Reply to Jotrin Electronics">Reply</a> </div>
+</div>
+</div>
+<ul class="children">
+<li class="comment byuser comment-author-admin odd alt depth-2" id="comment-190580">
+<div id="div-comment-190580" class="comment-body">
+<div class="comment-author vcard ping">
+<div class="author-avatar"><img alt="" src="./BOOTLOADER_files/7af7eb929fed99abe8c92f71d9af0310.png" srcset="https://secure.gravatar.com/avatar/7af7eb929fed99abe8c92f71d9af0310?s=148&amp;d=mm&amp;r=g 2x" class="avatar avatar-74 photo grav-hashed grav-hijack" height="74" width="74" loading="lazy" id="grav-7af7eb929fed99abe8c92f71d9af0310-0"></div>
+</div>
+<div class="author_comment">
+<div class="author_info">
+<span class="author-name">admin</span>
+</div>
+<div class="comment_text">
+<p>You can buy Atmega328p is a variety of online eshops.</p>
+<span>2 years ago</span>
+</div>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#comment-190580" data-commentid="190580" data-postid="74770" data-belowelement="div-comment-190580" data-respondelement="respond" data-replyto="Reply to admin" aria-label="Reply to admin">Reply</a> </div>
+</div>
+</div>
+</li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id="comment-201771">
+<div id="div-comment-201771" class="comment-body">
+<div class="comment-author vcard ping">
+<div class="author-avatar"><img alt="" src="./BOOTLOADER_files/8196a7a148bad5b7f0bd9c0565d337b7.png" srcset="https://secure.gravatar.com/avatar/8196a7a148bad5b7f0bd9c0565d337b7?s=148&amp;d=mm&amp;r=g 2x" class="avatar avatar-74 photo grav-hashed grav-hijack" height="74" width="74" loading="lazy" id="grav-8196a7a148bad5b7f0bd9c0565d337b7-0"></div>
+</div>
+<div class="author_comment">
+<div class="author_info">
+<span class="author-name">A. Neufeld</span>
+</div>
+<div class="comment_text">
+<p>Thank you a lot for such a clear, comprehensive, step-by-step, easy to follow guide. </p>
+<p>Maybe, having the option to get this guide as a.pdf-file would be nice, just to add to my “AVR”-related stuff.</p>
+<p>Anyway, thank you.</p>
+<span>2 years ago</span>
+</div>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#comment-201771" data-commentid="201771" data-postid="74770" data-belowelement="div-comment-201771" data-respondelement="respond" data-replyto="Reply to A. Neufeld" aria-label="Reply to A. Neufeld">Reply</a> </div>
+</div>
+</div>
+</li>
+<li class="comment odd alt thread-even depth-1" id="comment-394651">
+<div id="div-comment-394651" class="comment-body">
+<div class="comment-author vcard ping">
+<div class="author-avatar"><img alt="" src="./BOOTLOADER_files/475a7c045650b138419bd00384865a02.png" srcset="https://secure.gravatar.com/avatar/475a7c045650b138419bd00384865a02?s=148&amp;d=mm&amp;r=g 2x" class="avatar avatar-74 photo grav-hashed grav-hijack" height="74" width="74" loading="lazy" id="grav-475a7c045650b138419bd00384865a02-0"></div>
+</div>
+<div class="author_comment">
+<div class="author_info">
+<span class="author-name">Sandeep</span>
+</div>
+<div class="comment_text">
+<p>I’m getting the error as follows</p>
+<p>avrdude: Yikes! Invalid device signature.<br>
+Double check connections and try again, or use -F to override<br>
+this check.</p>
+<p>what should I do for this </p>
+<p>I’m using Arduino 1.0.6</p>
+<span>5 months ago</span>
+</div>
+<div class="reply">
+<a rel="nofollow" class="comment-reply-link" href="https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#comment-394651" data-commentid="394651" data-postid="74770" data-belowelement="div-comment-394651" data-respondelement="respond" data-replyto="Reply to Sandeep" aria-label="Reply to Sandeep">Reply</a> </div>
+</div>
+</div>
+</li>
+</ul>
+<div id="respond" class="comment-respond">
+<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#respond" style="display:none;">Cancel reply</a></small>
+</h3>
+<form id="commentform" class="comment-form">
+<iframe title="Comment Form" src="./BOOTLOADER_files/saved_resource(5).html" name="jetpack_remote_comment" style="width:100%; height: 430px; border:0;" class="jetpack_remote_comment" id="jetpack_remote_comment" sandbox="allow-same-origin allow-top-navigation allow-scripts allow-forms allow-popups" scrolling="no">
+									</iframe>
+<!--[if !IE]><!-->
+<script type="text/javascript">
+						document.addEventListener('DOMContentLoaded', function () {
+							var commentForms = document.getElementsByClassName('jetpack_remote_comment');
+							for (var i = 0; i < commentForms.length; i++) {
+								commentForms[i].allowTransparency = true;
+								commentForms[i].scrolling = 'no';
+							}
+						});
+					</script>
+<!--<![endif]-->
+<input id="ak_js" name="ak_js" type="hidden" value="1613421211640"></form>
+</div>
+<input type="hidden" name="comment_parent" id="comment_parent" value="">
+</div>
+</div>
+
+<div class="details-bottom-add" style="height: auto !important;"><div class="google-auto-placed" style="width: 100%; height: auto; clear: none; text-align: center;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-6394990980523463" data-adsbygoogle-status="done" style="display: block; margin: 10px auto; background-color: transparent; height: 280px;"><ins id="aswift_4_expand" style="display: inline-table; border: none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 930px; background-color: transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_4_anchor" style="display: block; border: none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 930px; background-color: transparent; overflow: hidden;"><iframe id="aswift_4" name="aswift_4" style="left: 0px; position: absolute; top: 0px; border: 0px; width: 930px; height: 280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="930" height="280" frameborder="0" src="./BOOTLOADER_files/ads(2).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!6" data-google-query-id="CL6CnMfe7O4CFc8bGAodg3IBLg" data-load-complete="true"></iframe></ins></ins></ins></div>
+<div class="advertisement deatil-cell">
+<script defer="" src="./BOOTLOADER_files/electronicslabcom.js.download" type="text/javascript"></script>
+<div id="banner34er45tg56block"><a id="banner34er45tg56link" href="https://s.click.aliexpress.com/e/_97NreH?dp=electronicslabcom"><img id="banner34er45tg56" src="./BOOTLOADER_files/300x250eng.jpg"></a></div>
+</div>
+<div class="advertisement deatil-cell">
+<a class="no_popup1 ads_statistics test123" value="0" href="https://www.banggood.com/custlink/vD3ycQ2CNh" target="_blank" id="608054"><img src="./BOOTLOADER_files/2111829947336x280.jpg" alt=""></a> </div>
+<div class="advertisement deatil-cell">
+<a class="no_popup1 ads_statistics test123" value="0" href="https://analytics.oemsecrets.com/main.php?n=Avnet-EU&amp;table=projects&amp;source=elab&amp;event_link=https://www.avnet.com/shop/emea/?cmp=GLOBAL-EMEA-GLOBAL-REACHFURTHER-TPM-OEMSECRETS-ElectronicsLab-BAN-201707" target="_blank" id="418071"><img src="./BOOTLOADER_files/641118241Generic ad-Reach further-eCommerce-300x250-B.jpg"></a> </div>
+</div>
+
+<div class="top-story-content related-projects">
+<div class="top-story-content related-projects"><h2>RELATED PROJECTS</h2><div class="crp_related_widget"><ul><li><a test="123" href="https://www.electronics-lab.com/project/programming-atmega328p-microcontroller-with-arduino-ide/"><img src="./BOOTLOADER_files/atmega328p-pu-.png" alt="Programming Atmega328p Microcontroller with Arduino IDE" title="Programming Atmega328p Microcontroller with Arduino IDE" width="292" height="236" class="crp_thumb crp_first"></a><div class="related-project-content"><a href="https://www.electronics-lab.com/project/programming-atmega328p-microcontroller-with-arduino-ide/"><h6>Programming Atmega328p Microcontroller with Arduino IDE</h6></a><a href="https://www.electronics-lab.com/project/programming-atmega328p-microcontroller-with-arduino-ide/" class="btn-view-more">Read More</a></div></li><li><a test="123" href="https://www.electronics-lab.com/project/current-meter-using-0-96-oled-display/"><img src="./BOOTLOADER_files/tpic-783x600.jpg" alt="Current Meter Using 0.96″ OLED Display" title="Current Meter Using 0.96″ OLED Display" width="292" height="236" class="crp_thumb crp_first"></a><div class="related-project-content"><a href="https://www.electronics-lab.com/project/current-meter-using-0-96-oled-display/"><h6>Current Meter Using 0.96″ OLED Display</h6></a><a href="https://www.electronics-lab.com/project/current-meter-using-0-96-oled-display/" class="btn-view-more">Read More</a></div></li><li><a test="123" href="https://www.electronics-lab.com/project/program-attiny-0-series-chips-miniature-updi-dongle/"><img src="./BOOTLOADER_files/updiprogrammerstick-783x600.jpg" alt="Program ATtiny 0-Series Chips with a Miniature UPDI Dongle" title="Program ATtiny 0-Series Chips with a Miniature UPDI Dongle" width="292" height="236" class="crp_thumb crp_first"></a><div class="related-project-content"><a href="https://www.electronics-lab.com/project/program-attiny-0-series-chips-miniature-updi-dongle/"><h6>Program ATtiny 0-Series Chips with a Miniature UPDI Dongle</h6></a><a href="https://www.electronics-lab.com/project/program-attiny-0-series-chips-miniature-updi-dongle/" class="btn-view-more">Read More</a></div></li></ul><div class="crp_clear"></div></div></div> </div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+	
+		jQuery('.content p').each(function() {			
+        if (jQuery(this).html()=="") {
+             jQuery(this).hide();
+	   }      
+    });
+	});
+</script>
+<div class="footer-ads">
+<div class="container">
+<div class="advertisement">
+<script async="" src="./BOOTLOADER_files/f(8).txt" type="text/javascript"></script>
+
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6394990980523463" data-ad-slot="6089602559" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"></ins></ins></ins>
+<script type="text/javascript">
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+<script src="./BOOTLOADER_files/plugin-placement.js.download" type="text/javascript"></script>
+</div>
+<footer id="colophon" class="site-footer">
+<div class="container">
+<div class="footer-full">
+<div id="text-59" class="widget footer-col widget_text"> <div class="textwidget"><p><a href="https://www.electronics-lab.com/"><img class="aligncenter size-full " src="./BOOTLOADER_files/footer_logo_new.png" alt=""></a></p>
+</div>
+</div><div id="nav_menu-7" class="widget footer-col widget_nav_menu"><h2 class="widgettitle">Menu</h2>
+<div class="menu-footer-menu-container"><ul id="menu-footer-menu" class="menu"><li id="menu-item-76460" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-76460"><a href="https://www.electronics-lab.com/community/">Community</a></li>
+<li id="menu-item-76461" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-76461"><a href="https://www.electronics-lab.com/blog/">Blog</a></li>
+<li id="menu-item-76462" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-76462"><a href="https://www.electronics-lab.com/downloads/">Downloads</a></li>
+<li id="menu-item-76463" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-76463"><a href="https://www.electronics-lab.com/articles/">Articles</a></li>
+<li id="menu-item-76494" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-76494"><a href="https://www.electronics-lab.com/links/">Links</a></li>
+</ul></div></div><div id="nav_menu-8" class="widget footer-col widget_nav_menu"><h2 class="widgettitle">Projects</h2>
+<div class="menu-footer-projects-container"><ul id="menu-footer-projects" class="menu"><li id="menu-item-76451" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-76451"><a href="https://www.electronics-lab.com/projectcategory/projects/audio/">Audio</a></li>
+<li id="menu-item-76450" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-76450"><a href="https://www.electronics-lab.com/projectcategory/projects/arduino/">Arduino</a></li>
+<li id="menu-item-76454" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-76454"><a href="https://www.electronics-lab.com/projectcategory/projects/mcu-development/">MCU Development</a></li>
+<li id="menu-item-76455" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-76455"><a href="https://www.electronics-lab.com/projectcategory/projects/microcontroller/">Microcontroller</a></li>
+<li id="menu-item-76456" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-76456"><a href="https://www.electronics-lab.com/projectcategory/projects/miscellaneous/">Miscellaneous</a></li>
+<li id="menu-item-86541" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-86541"><a href="https://www.electronics-lab.com/projectcategory/projects/motor-control/">Motor Control</a></li>
+<li id="menu-item-86543" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-86543"><a href="https://www.electronics-lab.com/projectcategory/projects/power/">Power</a></li>
+<li id="menu-item-76453" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-76453"><a href="https://www.electronics-lab.com/projectcategory/projects/moterlight-and-power-control/">Light – Power Control</a></li>
+<li id="menu-item-76458" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-76458"><a href="https://www.electronics-lab.com/projectcategory/projects/oscllators-and-timers/">Oscillators – Timers</a></li>
+<li id="menu-item-86542" class="menu-item menu-item-type-taxonomy menu-item-object-projectcategory menu-item-86542"><a href="https://www.electronics-lab.com/projectcategory/projects/security-and-other-sensors-and-detectors/">Sensors – Detectors</a></li>
+</ul></div></div> <div class="footer-col tab_f" style="margin-right:0">
+<h2 class="widgettitle">Connect With Us</h2>
+<div class="textwidget"><div class="footer-social">
+<ul>
+<li><a class="fb" href="https://www.facebook.com/electronicslab">Facebook</a></li>
+<li><a class="twt" href="https://twitter.com/electronicslab">Twitter</a></li>
+<li><a class="gplus" href="https://www.linkedin.com/company/electronics-lab">Linkedin</a></li>
+</ul>
+</div>
+<div class="connect-links">
+<ul>
+<li><a class="cs1" href="https://www.electronics-lab.com/contact-us/">Contact Us</a></li>
+<li><a class="ws" href="https://www.electronics-lab.com/work-for-us/">Work For Us</a></li>
+<li><a class="adv1" href="https://www.electronics-lab.com/advertising/">Advertising</a></li>
+</ul>
+</div>
+</div>
+<div class="sendpress">
+<div class="sendpress-signup-form">
+<form id="sendpress_signup" method="POST" data-form-id="82935" class="sendpress-signup">
+<input type="hidden" name="formid" value="82935"> <div id="exists" style="display:none;">You've already signed up, Thanks!</div>
+<div id="error"></div>
+<div id="thanks" style="display:none;">Check your inbox now to confirm your subscription.</div>
+<div id="form-wrap">
+<p></p>
+<input type="hidden" name="sp_list" id="list" class="sp_list" value="63158">
+<p>
+<input type="text" class="sp_email required" placeholder="email@domain.com" value="" name="sp_email">
+</p>
+<p class="signup-fields-bottom">
+</p>
+<p class="submit">
+<input value="submit" class="sendpress-submit" type="submit" id="submit" name="submit"><img class="ajaxloader" style="display:none;" src="./BOOTLOADER_files/ajax-loader.gif">
+</p>
+</div>
+</form>
+</div>
+</div> </div>
+</div>
+</div>
+<div class="copyright">
+<div class="container">
+<div id="text-56" class="widget footer-full widget_text"> <div class="textwidget"><div class="footer-copyright-area">
+<p><span class="copyright">© Electronics-lab.com – 2021, WORK IS LICENCED UNDER CC BY SA 4.0 <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license"><img style="border-width: 0;" src="./BOOTLOADER_files/80x15.png" alt="Creative Commons License"></a><br>
+</span></p>
+<p><img class="sslseallogo" src="./BOOTLOADER_files/RapidSSL_SEAL-90x50.png"></p>
+<ul>
+<li><a href="https://www.electronics-lab.com/privacy-policy/">Privacy Policy</a></li>
+<li><a href="https://www.electronics-lab.com/terms-of-service/">Terms of Service</a></li>
+<li><a href="https://www.electronics-lab.com/user-agreement/">User Agreement</a></li>
+</ul>
+</div>
+</div>
+</div> </div>
+</div>
+</footer>
+
+<div id="wpfront-scroll-top-container" style="opacity: 0.65; right: 20px; bottom: 20px; display: block;">
+<img src="./BOOTLOADER_files/36.png" alt="" style="width: 30px; height: 30px;"> </div>
+<script type="text/javascript">function wpfront_scroll_top_init() {if(typeof wpfront_scroll_top == "function" && typeof jQuery !== "undefined") {wpfront_scroll_top({"scroll_offset":900,"button_width":30,"button_height":30,"button_opacity":0.65,"button_fade_duration":200,"scroll_duration":750,"location":1,"marginX":20,"marginY":20,"hide_iframe":false,"auto_hide":false,"auto_hide_after":2,"button_action":"top","button_action_element_selector":"","button_action_container_selector":"html, body","button_action_element_offset":0});} else {setTimeout(wpfront_scroll_top_init, 100);}}wpfront_scroll_top_init();</script>
+<div id="yith-quick-view-modal">
+<div class="yith-quick-view-overlay"></div>
+<div class="yith-wcqv-wrapper" style="left: 174.5px; top: 284px; width: 1000px; height: 0px;">
+<div class="yith-wcqv-main">
+<div class="yith-wcqv-head">
+<a href="https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#" id="yith-quick-view-close" class="yith-wcqv-close">X</a>
+</div>
+<div id="yith-quick-view-content" class="woocommerce single-product"></div>
+</div>
+</div>
+</div>
+<div style="display:none">
+<div class="grofile-hash-map-b1bb16afb6ffb2f28269e0796fae7b41">
+</div>
+<div class="grofile-hash-map-7af7eb929fed99abe8c92f71d9af0310">
+</div>
+<div class="grofile-hash-map-8196a7a148bad5b7f0bd9c0565d337b7">
+</div>
+<div class="grofile-hash-map-475a7c045650b138419bd00384865a02">
+</div>
+</div>
+<a href="https://www.electronics-lab.com/win-an-xbox-series-x-or-playstation-5-in-oemsecrets-com-competition/" target="_blank" id="rum_sst_tab" class="rum_sst_contents rum_sst_right">PS5 &amp; XBOX Series X Giveaway</a> <script type="text/javascript">
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})()
+	</script>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="pswp__bg"></div>
+<div class="pswp__scroll-wrap">
+<div class="pswp__container">
+<div class="pswp__item"></div>
+<div class="pswp__item"></div>
+<div class="pswp__item"></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class="pswp__top-bar">
+<div class="pswp__counter"></div>
+<button class="pswp__button pswp__button--close" aria-label="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" aria-label="Share"></button>
+<button class="pswp__button pswp__button--fs" aria-label="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" aria-label="Zoom in/out"></button>
+<div class="pswp__preloader">
+<div class="pswp__preloader__icn">
+<div class="pswp__preloader__cut">
+<div class="pswp__preloader__donut"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class="pswp__share-tooltip"></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" aria-label="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" aria-label="Next (arrow right)"></button>
+<div class="pswp__caption">
+<div class="pswp__caption__center"></div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/template" id="tmpl-variation-template">
+	<div class="woocommerce-variation-description">{{{ data.variation.variation_description }}}</div>
+	<div class="woocommerce-variation-price">{{{ data.variation.price_html }}}</div>
+	<div class="woocommerce-variation-availability">{{{ data.variation.availability_html }}}</div>
+</script>
+<script type="text/template" id="tmpl-unavailable-variation-template">
+	<p>Sorry, this product is unavailable. Please choose a different combination.</p>
+</script>
+<link rel="stylesheet" id="basecss-css" href="./BOOTLOADER_files/style(8).css" type="text/css" media="all">
+<link rel="stylesheet" id="photoswipe-css" href="./BOOTLOADER_files/photoswipe.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="photoswipe-default-skin-css" href="./BOOTLOADER_files/default-skin.min.css" type="text/css" media="all">
+<script type="text/javascript" src="./BOOTLOADER_files/core.min.js.download" id="jquery-ui-core-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/datepicker.min.js.download" id="jquery-ui-datepicker-js"></script>
+<script type="text/javascript" id="jquery-ui-datepicker-js-after">
+jQuery(document).ready(function(jQuery){jQuery.datepicker.setDefaults({"closeText":"Close","currentText":"Today","monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"nextText":"Next","prevText":"Previous","dayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"dayNamesShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"dayNamesMin":["S","M","T","W","T","F","S"],"dateFormat":"d MM, yy","firstDay":1,"isRTL":false});});
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/jquery.selectBox.min.js.download" id="jquery-selectBox-js"></script>
+<script type="text/javascript" id="jquery-yith-wcwl-js-extra">
+/* <![CDATA[ */
+var yith_wcwl_l10n = {"ajax_url":"\/wp-admin\/admin-ajax.php","redirect_to_cart":"no","multi_wishlist":"","hide_add_button":"1","enable_ajax_loading":"","ajax_loader_url":"https:\/\/www.electronics-lab.com\/wp-content\/plugins\/yith-woocommerce-wishlist\/assets\/images\/ajax-loader-alt.svg","remove_from_wishlist_after_add_to_cart":"1","is_wishlist_responsive":"1","time_to_close_prettyphoto":"3000","fragments_index_glue":".","reload_on_found_variation":"1","labels":{"cookie_disabled":"We are sorry, but this feature is available only if cookies on your browser are enabled.","added_to_cart_message":"<div class=\"woocommerce-notices-wrapper\"><div class=\"woocommerce-message\" role=\"alert\">Product added to cart successfully<\/div><\/div>"},"actions":{"add_to_wishlist_action":"add_to_wishlist","remove_from_wishlist_action":"remove_from_wishlist","reload_wishlist_and_adding_elem_action":"reload_wishlist_and_adding_elem","load_mobile_action":"load_mobile","delete_item_action":"delete_item","save_title_action":"save_title","save_privacy_action":"save_privacy","load_fragments":"load_fragments"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/jquery.yith-wcwl.js.download" id="jquery-yith-wcwl-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/pdfobject.min.js.download" id="awsm-ead-pdf-object-js"></script>
+<script type="text/javascript" id="awsm-ead-public-js-extra">
+/* <![CDATA[ */
+var eadPublic = [];
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/embed-public.min.js.download" id="awsm-ead-public-js"></script>
+<script type="text/javascript" id="contact-form-7-js-extra">
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/www.electronics-lab.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/scripts.js.download" id="contact-form-7-js"></script>
+<script type="text/javascript" id="download_script-js-extra">
+/* <![CDATA[ */
+var ajax_object = {"ajax_url":"https:\/\/www.electronics-lab.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/download_js.js.download" id="download_script-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/jquery.blockUI.min.js.download" id="jquery-blockui-js"></script>
+<script type="text/javascript" id="wc-add-to-cart-js-extra">
+/* <![CDATA[ */
+var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","i18n_view_cart":"View cart","cart_url":"https:\/\/www.electronics-lab.com\/cart\/","is_cart":"","cart_redirect_after_add":"no"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/add-to-cart.min.js.download" id="wc-add-to-cart-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/js.cookie.min.js.download" id="js-cookie-js"></script>
+<script type="text/javascript" id="woocommerce-js-extra">
+/* <![CDATA[ */
+var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/woocommerce.min.js.download" id="woocommerce-js"></script>
+<script type="text/javascript" id="wc-cart-fragments-js-extra">
+/* <![CDATA[ */
+var wc_cart_fragments_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_b5bd4a384aca4c51014dda9ee09587c3","fragment_name":"wc_fragments_b5bd4a384aca4c51014dda9ee09587c3","request_timeout":"5000"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/cart-fragments.min.js.download" id="wc-cart-fragments-js"></script>
+<script type="text/javascript" id="wc-cart-fragments-js-after">
+		jQuery( 'body' ).bind( 'wc_fragments_refreshed', function() {
+			var jetpackLazyImagesLoadEvent;
+			try {
+				jetpackLazyImagesLoadEvent = new Event( 'jetpack-lazy-images-load', {
+					bubbles: true,
+					cancelable: true
+				} );
+			} catch ( e ) {
+				jetpackLazyImagesLoadEvent = document.createEvent( 'Event' )
+				jetpackLazyImagesLoadEvent.initEvent( 'jetpack-lazy-images-load', true, true );
+			}
+			jQuery( 'body' ).get( 0 ).dispatchEvent( jetpackLazyImagesLoadEvent );
+		} );
+		
+</script>
+<script async="async" type="text/javascript" src="./BOOTLOADER_files/wpfront-scroll-top.min.js.download" defer="defer"></script>
+<script type="text/javascript" id="yith-woocompare-main-js-extra">
+/* <![CDATA[ */
+var yith_woocompare = {"ajaxurl":"\/?wc-ajax=%%endpoint%%","actionadd":"yith-woocompare-add-product","actionremove":"yith-woocompare-remove-product","actionview":"yith-woocompare-view-table","actionreload":"yith-woocompare-reload-product","added_label":"Added","table_title":"Product Comparison","auto_open":"yes","loader":"https:\/\/www.electronics-lab.com\/wp-content\/plugins\/yith-woocommerce-compare\/assets\/images\/loader.gif","button_text":"Compare","cookie_name":"yith_woocompare_list","close_label":"Close"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/woocompare.min.js.download" id="yith-woocompare-main-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/jquery.colorbox-min.js.download" id="jquery-colorbox-js"></script>
+<script type="text/javascript" id="yith-wcqv-frontend-js-extra">
+/* <![CDATA[ */
+var yith_qv = {"ajaxurl":"\/wp-admin\/admin-ajax.php","loader":"https:\/\/www.electronics-lab.com\/wp-content\/plugins\/yith-woocommerce-quick-view\/assets\/image\/qv-loader.gif","lang":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/frontend.min.js.download" id="yith-wcqv-frontend-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/jquery.prettyPhoto.min.js(1).download" id="prettyPhoto-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/gprofiles.js(1).download" id="grofiles-cards-js"></script>
+<script type="text/javascript" id="wpgroho-js-extra">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/wpgroho.js(1).download" id="wpgroho-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/navigation.js.download" id="elab-navigation-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/skip-link-focus-fix.js.download" id="elab-skip-link-focus-fix-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/comment-reply.min.js.download" id="comment-reply-js"></script>
+<script type="text/javascript" id="wpdreams-ajaxsearchlite-js-extra">
+/* <![CDATA[ */
+var ajaxsearchlite = {"ajaxurl":"https:\/\/www.electronics-lab.com\/wp-admin\/admin-ajax.php","backend_ajaxurl":"https:\/\/www.electronics-lab.com\/wp-admin\/admin-ajax.php","js_scope":"jQuery"};
+var ASL = {"ajaxurl":"https:\/\/www.electronics-lab.com\/wp-admin\/admin-ajax.php","backend_ajaxurl":"https:\/\/www.electronics-lab.com\/wp-admin\/admin-ajax.php","js_scope":"jQuery","detect_ajax":"0","scrollbar":"1","js_retain_popstate":"0","version":"4743","fix_duplicates":"1","analytics":{"method":0,"tracking_id":"","string":"?ajax_search={asl_term}","event":{"focus":{"active":1,"action":"focus","category":"ASL","label":"Input focus","value":"1"},"search_start":{"active":0,"action":"search_start","category":"ASL","label":"Phrase: {phrase}","value":"1"},"search_end":{"active":1,"action":"search_end","category":"ASL","label":"{phrase} | {results_count}","value":"1"},"magnifier":{"active":1,"action":"magnifier","category":"ASL","label":"Magnifier clicked","value":"1"},"return":{"active":1,"action":"return","category":"ASL","label":"Return button pressed","value":"1"},"facet_change":{"active":0,"action":"facet_change","category":"ASL","label":"{option_label} | {option_value}","value":"1"},"result_click":{"active":1,"action":"result_click","category":"ASL","label":"{result_title} | {result_url}","value":"1"}}}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/jquery.ajaxsearchlite.min.js.download" id="wpdreams-ajaxsearchlite-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/enlighterjs.min.js.download" id="enlighterjs-js"></script>
+<script type="text/javascript" id="enlighterjs-js-after">
+!function(e,n){if("undefined"!=typeof EnlighterJS){var o={"selectors":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"options":{"indent":2,"ampersandCleanup":true,"linehover":true,"rawcodeDbclick":false,"textOverflow":"break","linenumbers":true,"theme":"beyond","language":"generic","retainCssClasses":false,"collapse":false,"toolbarOuter":"","toolbarTop":"{BTN_RAW}{BTN_COPY}{BTN_WINDOW}{BTN_WEBSITE}","toolbarBottom":""}};(e.EnlighterJSINIT=function(){EnlighterJS.init(o.selectors.block,o.selectors.inline,o.options)})()}else{(n&&(n.error||n.log)||function(){})("Error: EnlighterJS resources not loaded yet!")}}(window,console);
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/wp-embed.min.js.download" id="wp-embed-js"></script>
+<script type="text/javascript" id="eucookielaw-scripts-js-extra">
+/* <![CDATA[ */
+var eucookielaw_data = {"euCookieSet":"","autoBlock":"0","expireTimer":"360","scrollConsent":"0","networkShareURL":"","isCookiePage":"","isRefererWebsite":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/scripts.js(1).download" id="eucookielaw-scripts-js"></script>
+<script type="text/javascript" id="customadds_script-js-extra">
+/* <![CDATA[ */
+var myScript = {"pluginsUrl":"https:\/\/www.electronics-lab.com\/wp-content\/plugins"};
+var myScript = {"pluginsUrl":"https:\/\/www.electronics-lab.com\/wp-content\/plugins"};
+var myScript = {"pluginsUrl":"https:\/\/www.electronics-lab.com\/wp-content\/plugins"};
+var myScript = {"pluginsUrl":"https:\/\/www.electronics-lab.com\/wp-content\/plugins"};
+var myScript = {"pluginsUrl":"https:\/\/www.electronics-lab.com\/wp-content\/plugins"};
+var myScript = {"pluginsUrl":"https:\/\/www.electronics-lab.com\/wp-content\/plugins"};
+var myScript = {"pluginsUrl":"https:\/\/www.electronics-lab.com\/wp-content\/plugins"};
+var myScript = {"pluginsUrl":"https:\/\/www.electronics-lab.com\/wp-content\/plugins"};
+var myScript = {"pluginsUrl":"https:\/\/www.electronics-lab.com\/wp-content\/plugins"};
+var myScript = {"pluginsUrl":"https:\/\/www.electronics-lab.com\/wp-content\/plugins"};
+var myScript = {"pluginsUrl":"https:\/\/www.electronics-lab.com\/wp-content\/plugins"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/customadds_js.js.download" id="customadds_script-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/jquery.easytabs.min.js.download" id="customadds_scrip2-js"></script>
+<script async="async" type="text/javascript" src="./BOOTLOADER_files/form.js.download" id="akismet-form-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/lib.core.js.download" id="slb_core-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/lib.view.js.download" id="slb_view-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/underscore.min.js.download" id="underscore-js"></script>
+<script type="text/javascript" id="wp-util-js-extra">
+/* <![CDATA[ */
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/wp-util.min.js.download" id="wp-util-js"></script>
+<script type="text/javascript" id="wc-add-to-cart-variation-js-extra">
+/* <![CDATA[ */
+var wc_add_to_cart_variation_params = {"wc_ajax_url":"\/?wc-ajax=%%endpoint%%","i18n_no_matching_variations_text":"Sorry, no products matched your selection. Please choose a different combination.","i18n_make_a_selection_text":"Please select some product options before adding this product to your cart.","i18n_unavailable_text":"Sorry, this product is unavailable. Please choose a different combination."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/add-to-cart-variation.min.js.download" id="wc-add-to-cart-variation-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/jquery.zoom.min.js.download" id="zoom-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/photoswipe.min.js.download" id="photoswipe-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/photoswipe-ui-default.min.js.download" id="photoswipe-ui-default-js"></script>
+<script type="text/javascript" id="wc-single-product-js-extra">
+/* <![CDATA[ */
+var wc_single_product_params = {"i18n_required_rating_text":"Please select a rating","review_rating_required":"yes","flexslider":{"rtl":false,"animation":"slide","smoothHeight":true,"directionNav":false,"controlNav":"thumbnails","slideshow":false,"animationSpeed":500,"animationLoop":false,"allowOneSlide":false},"zoom_enabled":"1","zoom_options":[],"photoswipe_enabled":"1","photoswipe_options":{"shareEl":false,"closeOnScroll":false,"history":false,"hideAnimationDuration":0,"showAnimationDuration":0},"flexslider_enabled":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./BOOTLOADER_files/single-product.min.js.download" id="wc-single-product-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/client.js.download" id="slb-asset-slb_baseline-base-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/client.js(1).download" id="slb-asset-slb_default-base-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/tag.item.js.download" id="slb-asset-item-base-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/tag.ui.js.download" id="slb-asset-ui-base-js"></script>
+<script type="text/javascript" src="./BOOTLOADER_files/handler.image.js.download" id="slb-asset-image-base-js"></script>
+<script type="text/javascript" id="slb_footer">/* <![CDATA[ */if ( !!window.jQuery ) {(function($){$(document).ready(function(){if ( !!window.SLB && SLB.has_child('View.init') ) { SLB.View.init({"ui_autofit":true,"ui_animate":true,"slideshow_autostart":false,"slideshow_duration":"10","group_loop":false,"ui_overlay_opacity":"0.8","ui_title_default":false,"theme_default":"slb_default","ui_labels":{"loading":"Loading","close":"Close","nav_next":"Next","nav_prev":"Previous","slideshow_start":"Start slideshow","slideshow_stop":"Stop slideshow","group_status":"Item %current% of %total%"}}); }
+if ( !!window.SLB && SLB.has_child('View.assets') ) { {$.extend(SLB.View.assets, {"844239417":{"id":74814,"type":"image","internal":true,"source":"https:\/\/www.electronics-lab.com\/wp-content\/uploads\/2018\/07\/Atmeg328p-1.jpg","title":"Atmeg328p","caption":"Atmega328P","description":""},"2097479091":{"id":74798,"type":"image","internal":true,"source":"https:\/\/www.electronics-lab.com\/wp-content\/uploads\/2018\/07\/Arduino-as-ISP.jpg","title":"Arduino as ISP","caption":"Arduino as ISP Example","description":""},"843701832":{"id":74813,"type":"image","internal":true,"source":"https:\/\/www.electronics-lab.com\/wp-content\/uploads\/2018\/07\/Bootloader-schematics.png","title":"Bootloader schematics","caption":"Schematics","description":""},"1755469489":{"id":74801,"type":"image","internal":true,"source":"https:\/\/www.electronics-lab.com\/wp-content\/uploads\/2018\/07\/burn-bootloader.jpg","title":"burn bootloader","caption":"Select Burn Bootloader","description":""}});} }
+/* THM */
+if ( !!window.SLB && SLB.has_child('View.extend_theme') ) { SLB.View.extend_theme('slb_baseline',{"name":"Baseline","parent":"","styles":[{"handle":"base","uri":"https:\/\/www.electronics-lab.com\/wp-content\/plugins\/simple-lightbox\/themes\/baseline\/css\/style.css","deps":[]}],"layout_raw":"<div class=\"slb_container\"><div class=\"slb_content\">{{item.content}}<div class=\"slb_nav\"><span class=\"slb_prev\">{{ui.nav_prev}}<\/span><span class=\"slb_next\">{{ui.nav_next}}<\/span><\/div><div class=\"slb_controls\"><span class=\"slb_close\">{{ui.close}}<\/span><span class=\"slb_slideshow\">{{ui.slideshow_control}}<\/span><\/div><div class=\"slb_loading\">{{ui.loading}}<\/div><\/div><div class=\"slb_details\"><div class=\"inner\"><div class=\"slb_data\"><div class=\"slb_data_content\"><span class=\"slb_data_title\">{{item.title}}<\/span><span class=\"slb_group_status\">{{ui.group_status}}<\/span><div class=\"slb_data_desc\">{{item.description}}<\/div><\/div><\/div><div class=\"slb_nav\"><span class=\"slb_prev\">{{ui.nav_prev}}<\/span><span class=\"slb_next\">{{ui.nav_next}}<\/span><\/div><\/div><\/div><\/div>"}); }if ( !!window.SLB && SLB.has_child('View.extend_theme') ) { SLB.View.extend_theme('slb_default',{"name":"Default (Light)","parent":"slb_baseline","styles":[{"handle":"base","uri":"https:\/\/www.electronics-lab.com\/wp-content\/plugins\/simple-lightbox\/themes\/default\/css\/style.css","deps":[]}]}); }})})(jQuery);}/* ]]> */</script>
+<script type="text/javascript" id="slb_context">/* <![CDATA[ */if ( !!window.jQuery ) {(function($){$(document).ready(function(){if ( !!window.SLB ) { {$.extend(SLB, {"context":["public","user_guest"]});} }})})(jQuery);}/* ]]> */</script>
+<!--[if IE]>
+		<script type="text/javascript">
+			if ( 0 === window.location.hash.indexOf( '#comment-' ) ) {
+				// window.location.reload() doesn't respect the Hash in IE
+				window.location.hash = window.location.hash;
+			}
+		</script>
+		<![endif]-->
+<script type="text/javascript">
+			(function () {
+				var comm_par_el = document.getElementById( 'comment_parent' ),
+					comm_par = ( comm_par_el && comm_par_el.value ) ? comm_par_el.value : '',
+					frame = document.getElementById( 'jetpack_remote_comment' ),
+					tellFrameNewParent;
+
+				tellFrameNewParent = function () {
+					if ( comm_par ) {
+						frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=95929522&postid=74770&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=mystery&greeting=Leave+a+Reply&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=transparent&lang=en_US&jetpack_version=9.4&show_cookie_consent=10&has_cookie_consent=0&token_key=%3Bnormal%3B&sig=cbeb3652dc2bed034ea18d6997689518f22818b2#parent=https%3A%2F%2Fwww.electronics-lab.com%2Fproject%2Finstalling-the-arduino-bootloader-on-the-atmega328p-microcontroller%2F" + '&replytocom=' + parseInt( comm_par, 10 ).toString();
+					} else {
+						frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=95929522&postid=74770&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=mystery&greeting=Leave+a+Reply&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=transparent&lang=en_US&jetpack_version=9.4&show_cookie_consent=10&has_cookie_consent=0&token_key=%3Bnormal%3B&sig=cbeb3652dc2bed034ea18d6997689518f22818b2#parent=https%3A%2F%2Fwww.electronics-lab.com%2Fproject%2Finstalling-the-arduino-bootloader-on-the-atmega328p-microcontroller%2F";
+					}
+				};
+
+				
+				if ( 'undefined' !== typeof addComment ) {
+					addComment._Jetpack_moveForm = addComment.moveForm;
+
+					addComment.moveForm = function ( commId, parentId, respondId, postId ) {
+						var returnValue = addComment._Jetpack_moveForm( commId, parentId, respondId, postId ),
+							cancelClick, cancel;
+
+						if ( false === returnValue ) {
+							cancel = document.getElementById( 'cancel-comment-reply-link' );
+							cancelClick = cancel.onclick;
+							cancel.onclick = function () {
+								var cancelReturn = cancelClick.call( this );
+								if ( false !== cancelReturn ) {
+									return cancelReturn;
+								}
+
+								if ( ! comm_par ) {
+									return cancelReturn;
+								}
+
+								comm_par = 0;
+
+								tellFrameNewParent();
+
+								return cancelReturn;
+							};
+						}
+
+						if ( comm_par == parentId ) {
+							return returnValue;
+						}
+
+						comm_par = parentId;
+
+						tellFrameNewParent();
+
+						return returnValue;
+					};
+				}
+
+				
+				// Do the post message bit after the dom has loaded.
+				document.addEventListener( 'DOMContentLoaded', function () {
+					var iframe_url = "https:\/\/jetpack.wordpress.com";
+					if ( window.postMessage ) {
+						if ( document.addEventListener ) {
+							window.addEventListener( 'message', function ( event ) {
+								var origin = event.origin.replace( /^http:\/\//i, 'https://' );
+								if ( iframe_url.replace( /^http:\/\//i, 'https://' ) !== origin ) {
+									return;
+								}
+								jQuery( frame ).height( event.data );
+							});
+						} else if ( document.attachEvent ) {
+							window.attachEvent( 'message', function ( event ) {
+								var origin = event.origin.replace( /^http:\/\//i, 'https://' );
+								if ( iframe_url.replace( /^http:\/\//i, 'https://' ) !== origin ) {
+									return;
+								}
+								jQuery( frame ).height( event.data );
+							});
+						}
+					}
+				})
+
+			})();
+		</script>
+<script src="./BOOTLOADER_files/e-202107.js.download" defer="" type="text/javascript"></script>
+<script type="text/javascript">
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:9.4',blog:'95929522',post:'74770',tz:'2',srv:'www.electronics-lab.com'} ]);
+	_stq.push([ 'clickTrackerInit', '95929522', '74770' ]);
+</script>
+<div class="pea_cook_wrapper pea_cook_bottomright" style="color:#FFFFFF;background:rgb(61,94,120);background: rgba(61,94,120,0.85);"><p>By continuing to use the site, you agree to the use of cookies. <a style="color:#FFFFFF;" href="https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#" id="fom">more info</a> <button id="pea_cook_btn" class="pea_cook_btn">Accept</button></p></div><div class="pea_cook_more_info_popover"><div class="pea_cook_more_info_popover_inner" style="color:#FFFFFF;background-color: rgba(61,94,120,0.9);"><p>The cookie settings on this website are set to "allow cookies" to give you the best browsing experience possible. If you continue to use this website without changing your cookie settings or you click "Accept" below then you are consenting to this.</p><p><a style="color:#FFFFFF;" href="https://www.electronics-lab.com/project/installing-the-arduino-bootloader-on-the-atmega328p-microcontroller/#" id="pea_close">Close</a></p></div></div>
+
+<script src="./BOOTLOADER_files/jquery.mCustomScrollbar.concat.min.js.download" type="text/javascript"></script>
+<script src="./BOOTLOADER_files/jquery.mCustomScrollbar.min.js.download" type="text/javascript"></script>
+
+<iframe src="./BOOTLOADER_files/_97NreH.html" id="ali" height="0" width="0" scrolling="no" style="display: none;"></iframe><img src="./BOOTLOADER_files/g.gif" alt=":)" width="6" height="5" id="wpstats"><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div><ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_2_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" src="./BOOTLOADER_files/ads(3).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!4" data-load-complete="true"></iframe></ins></ins></ins><iframe id="google_osd_static_frame_196968400240" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./BOOTLOADER_files/saved_resource(6).html"></iframe><iframe scrolling="no" frameborder="0" allowtransparency="true" src="./BOOTLOADER_files/widget_iframe.6e189c4f2b6d88c453045806323cdcf3.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe name="oauth2relay372613143" id="oauth2relay372613143" src="./BOOTLOADER_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./BOOTLOADER_files/saved_resource(7).html"></iframe></body><iframe id="google_esf" name="google_esf" src="./BOOTLOADER_files/zrt_lookup.html" data-ad-client="ca-pub-6394990980523463" style="display: none;"></iframe></html>

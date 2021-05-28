@@ -8,16 +8,14 @@
 #include <DHT.h>
 
 #define DHTTYPE DHT11   //DHT Temperature and Humidity Sensor type
-#define DHTPIN 8        //DHT Temperature and Humidity Sensor on 8th pin 
+#define DHTPIN 7        //DHT Temperature and Humidity Sensor on 8th pin 
 
 #define RXBLT 2         //HC-05 module TX receive data from broadcast and TRANSMIT to Arduino
 #define TXBLT 3         //HC-05 module RECEIVE data from Arduino and transmit on broadcast
 
-#define FAN1 12         //First Fan's relay pin, common with the resistence. INTO
-#define FAN2 13         //Second Fan's relay. OUTO
-
+#define FAN1 12         //First Fan's relay pin, common with the resistence. 
+#define FAN2 13         //Second Fan's relay pin. 
 #define PHRES A5        //AnalogInput, it reads the Voltage passed by the photoresistor from
-#define PHRESIN 7     //USED DURING DEVELOPING TO AFFORD VOLTAGE TO THE PHOTORESISTOR
 
 DHT dht(DHTPIN, DHTTYPE);
 SoftwareSerial blue(RXBLT, TXBLT);
@@ -35,8 +33,8 @@ void setup(){
   digitalWrite(FAN1, LOW);
   digitalWrite(FAN2, LOW);
 
-  pinMode(PHRESIN, OUTPUT);
-  digitalWrite(PHRESIN, HIGH);
+  pinMode(PHRES, OUTPUT);
+  digitalWrite(PHRES, HIGH);
   loadRcmdValues(blue);
 }
 
@@ -88,7 +86,7 @@ void blt(){
   /**
    * Integer is represented in Arduino with 2 bytes (not the 4 usually). The application
    * is written in Java, that uses the 4 bytes. So it cast value before as integer
-   * and then as unsigned char 'cause it is represented with 4 bytes in Arduino
+   * and then as unsigned char 'cause it is represented with 1 bytes in wiring
    */
   blue.write((unsigned char)(int)t);
   blue.write((unsigned char)(int)h);  
